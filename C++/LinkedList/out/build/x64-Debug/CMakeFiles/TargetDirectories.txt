@@ -1,0 +1,8 @@
+D:/BR/MYTestProjects/algorithms-refresher/C++/LinkedList/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+D:/BR/MYTestProjects/algorithms-refresher/C++/LinkedList/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+D:/BR/MYTestProjects/algorithms-refresher/C++/LinkedList/out/build/x64-Debug/LinkedList/CMakeFiles/edit_cache.dir
+D:/BR/MYTestProjects/algorithms-refresher/C++/LinkedList/out/build/x64-Debug/LinkedList/CMakeFiles/LinkedList.dir
+D:/BR/MYTestProjects/algorithms-refresher/C++/LinkedList/out/build/x64-Debug/LinkedList/CMakeFiles/rebuild_cache.dir
+D:/BR/MYTestProjects/algorithms-refresher/C++/LinkedList/out/build/x64-Debug/LinkedList/Node/CMakeFiles/rebuild_cache.dir
+D:/BR/MYTestProjects/algorithms-refresher/C++/LinkedList/out/build/x64-Debug/LinkedList/Node/CMakeFiles/Node.dir
+D:/BR/MYTestProjects/algorithms-refresher/C++/LinkedList/out/build/x64-Debug/LinkedList/Node/CMakeFiles/edit_cache.dir
