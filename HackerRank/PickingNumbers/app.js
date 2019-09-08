@@ -2,36 +2,44 @@
 
 function pickingNumbers(a) {
     // Write your code here
-    const res = a.map((num, key) => {
+    const maxOccur = occurenceArry(a.sort((a, b) => a - b)).sort((a, b) => b[1] - a[1]).reduce((occu, current) => {
+        if (occu.a.includes(current[0])) return occu;
+        occu.a.push(current[0]);
+        occu.b.push(current);
+        return occu;
+    }, { a: [], b: [] })
+    const firsMaxOccur = maxOccur.b[0];
+    const secodMaxOccurA = maxOccur.b.filter(x => {
+        return x[0] == firsMaxOccur[0] + 1;
+    })[0]
+    console.log(maxOccur.b)
+    const secodMaxOccurB = maxOccur.b.filter(x => {
 
-        //console.log(key)
-        return largestSeq(a, key, 0);
-    }).sort((a, b) => b.length - a.length)
-    return res
-}
+        return x[0] == firsMaxOccur[0] - 1;
+    })[0] || [0, 0]
 
-const largestSeq = (arr, cmpIndex, n, resArr = []) => {
-    if (n > arr.length) {
-        return []
-    }
-    const diff = Math.abs(arr[cmpIndex] - arr[n])
-    const leastNum = resArr.sort((a, b) => a - b)
-    console.log(">> leastNum arr ")
-    console.log(leastNum)
-
-    const lestNumDiff = Math.abs(leastNum[0] - arr[n])
-    console.log(">> lestNumDiff")
-    console.log(lestNumDiff)
-    console.log(">> diff")
-    console.log(diff)
-    if (lestNumDiff < 2) {
-        resArr = [...resArr, arr[n]]
-    }
-    return [...largestSeq(arr, cmpIndex, n + 1, resArr)]
+    console.log(secodMaxOccurB)
+    return secodMaxOccurA[1] > secodMaxOccurB[1] ? secodMaxOccurA[1] + firsMaxOccur[1] : secodMaxOccurB[1] + firsMaxOccur[1];
 }
 
 
-const testArry = [1, 2, 2, 3, 1, 2];
+const occurenceArry = (arr, n = 0) => {
+    if (n >= arr.length) return [];
+
+    return [...occurenceArry(arr, n + 1), [arr[n], occurence(arr, arr[n])]]
+}
+
+const occurence = (arr, num, n = 0) => {
+    if (n >= arr.length) return 0;
+    if (arr[n] == num) return occurence(arr, num, n + 1) + 1;
+    return occurence(arr, num, n + 1);
+}
+
+
+
+
+//const testArry = [1, 2, 2, 3, 1, 2];
+const testArry = [4, 6, 5, 3, 3, 1]
 
 //console.log(pickingNumbers(testArry, 0, 0));
-console.log(largestSeq(testArry, 1, 0));
+console.log(pickingNumbers(testArry));
