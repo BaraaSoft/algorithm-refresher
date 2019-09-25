@@ -11,28 +11,29 @@ const graph = [
 ]
 
 const algo = (nodenum) => {
-
-    let vertixToExplore = [];
-
-    const visited = [];
-    vertixToExplore.push(nodenum)
-    visited[nodenum] = 1;
-
     console.log(nodenum);
-    while (vertixToExplore.length != 0) {
-        let [vertixIndex, ...rest] = vertixToExplore;
-        vertixToExplore = rest;
-        for (const [key, vertix] of Object.entries(graph[vertixIndex])) {
-            if ((visited[key] != 1) && vertix == 1) {
-                visited[key] = 1;
+
+    let expStck = [nodenum];
+    let visitedArr = [];
+
+    visitedArr[nodenum] = 1;
+
+    while (expStck.length != 0) {
+
+        let [arryIndex, ...rest] = expStck;
+        graph[arryIndex].forEach((value, key) => {
+            if (visitedArr[key] != 1 && value == 1) {
                 console.log(key);
-                vertixToExplore.push(key)
+                visitedArr[key] = 1;
+                rest.push(key);
             }
-        }
+        });
+
+        expStck = rest;
     }
 
 
 }
 
 
-algo(3);
+algo(7);
