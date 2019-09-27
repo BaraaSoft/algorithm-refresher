@@ -24,6 +24,7 @@ const alog = (graph) => {
     do {
         toExplore = traverseArry.pop();
         miniCostTree.push(toExplore)
+
         nearArry = nearRoutine(toExplore.node, toExplore.edge, graph, nearArry);
         toExplore = minimumConnect(nearArry, graph);
         traverseArry.push(toExplore)
