@@ -40,13 +40,13 @@ const alog = (graph) => {
 
 const nearRoutine = (vt1, vt2, graph, nearArry) => {
     nearArry[0] = 0;
-    console.log(nearArry)
+
     nearArry[vt1] = 0;
     nearArry[vt2] = 0;
-
+    console.log(nearArry)
     for (const [key, val] of Object.entries(nearArry)) {
         //if (key != vt1 && key != vt2) nearArry[key] = graph[vt2][key] < graph[vt1][key] ? vt2 : vt1
-        if (val != 0) nearArry[key] = graph[vt2][key] < graph[vt1][key] ? vt2 : vt1
+        if (val != 0) nearArry[key] = graph[key][vt2] < graph[key][vt1] ? vt2 : vt1
     }
 
 
@@ -70,7 +70,7 @@ const minimumEdge = (graph) => {
 
 const minimumConnect = (nearArry, graph) => {
     const next = nearArry.reduce((accum, current, index) => {
-        if (graph[index][current] < graph[index][accum.node]) return { node: +index, edge: +current };
+        if (graph[current][index] < graph[index][accum.node]) return { node: +index, edge: +current };
         else return accum;
     }, { node: 0, edge: 0 })
 
