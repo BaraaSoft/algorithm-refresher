@@ -22,10 +22,9 @@ const alog = (graph) => {
 
     let miniCostTree = [];
     do {
-
         toExplore = traverseArry.pop();
         miniCostTree.push(toExplore)
-        console.log(toExplore)
+
         nearArry = nearRoutine(toExplore.node, toExplore.edge, graph, nearArry);
         toExplore = minimumConnect(nearArry, graph);
         traverseArry.push(toExplore)
@@ -33,24 +32,25 @@ const alog = (graph) => {
     } while (miniCostTree.length < 6);
 
     return miniCostTree;
-
 }
 
 
 
 const nearRoutine = (vt1, vt2, graph, nearArry) => {
-    nearArry[0] = 0;
+    nearArry[0] = BI;
 
     nearArry[vt1] = 0;
     nearArry[vt2] = 0;
-    console.log(nearArry)
+
+
     for (const [key, val] of Object.entries(nearArry)) {
-        //if (key != vt1 && key != vt2) nearArry[key] = graph[vt2][key] < graph[vt1][key] ? vt2 : vt1
-        if (val != 0) nearArry[key] = graph[key][vt2] < graph[key][vt1] ? vt2 : vt1
+        let vt;
+        if (val != 0) {
+            vt = graph[key][vt2] < graph[key][vt1] ? vt2 : vt1
+            nearArry[key] = graph[key][nearArry[key]] < graph[key][vt] ? +val : vt;
+        }
+
     }
-
-
-
     return nearArry;
 }
 
@@ -69,17 +69,22 @@ const minimumEdge = (graph) => {
 }
 
 const minimumConnect = (nearArry, graph) => {
-    const next = nearArry.reduce((accum, current, index) => {
-        if (graph[current][index] < graph[index][accum.node]) return { node: +index, edge: +current };
-        else return accum;
-    }, { node: 0, edge: 0 })
+    // const next = nearArry.reduce((accum, current, index) => {
+    //     console.log(accum)
+    //     if (graph[index][current] < graph[index][accum.node]) return { node: parseInt(index, 10), edge: parseInt(current, 10) };
+    //     else return accum;
+    // }, { node: 0, edge: 0 });
 
-    return next;
+    let min = { node: 0, edge: 0 };
+    for (const [key, val] of Object.entries(nearArry)) {
+        min = graph[key][val] < graph[min.node][min.edge] ? { node: +key, edge: +val } : min
+    }
+
+    return min;
 }
 
 
-let arr = [6, 0, 1, 6, 6, 6, 0, 6];
 
-//console.log(minimumConnect(arr, graph));
+
 
 console.log(alog(graph));
