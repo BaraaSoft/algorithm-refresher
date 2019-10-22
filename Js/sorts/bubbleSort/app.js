@@ -27,7 +27,6 @@ const swap = (list, pass, callback) => {
         if (elmOne > elmTwo) {
             list[i + 1] = elmOne;
             list[i] = elmTwo;
-
             alreadySorted = 1;
         }
     }
