@@ -7,8 +7,6 @@ const quickSort = (orgArr) => {
     let pivot = orgArr[pvIndx];
     let i = 0;
     let j = orgArr.length - 1;
-    let leftElm = orgArr[i];
-    let rightElm = orgArr[j];
 
     if (orgArr.length < 2) {
         return orgArr;

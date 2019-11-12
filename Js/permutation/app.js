@@ -1,10 +1,10 @@
 
-const algo = (A, B, C) => {
-    let countArry = [A, B, C];
-    const strArry = ['a', 'b', 'c'];
+// const algo = (A, B, C) => {
+//     let countArry = [A, B, C];
+//     const strArry = ['a', 'b', 'c'];
 
-    perum(countArry, strArry)
-}
+//     perum(countArry, strArry)
+// }
 
 
 const perum = (countArry, strArry, result, level, perumResult = [], limit) => {
@@ -19,7 +19,6 @@ const perum = (countArry, strArry, result, level, perumResult = [], limit) => {
         countArry[i]--;
         perum(countArry, strArry, result, level + 1, perumResult, limit);
         countArry[i]++;
-
     }
 
 }
