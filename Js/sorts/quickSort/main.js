@@ -5,34 +5,23 @@ const sort = (arr, indexL, indexR) => {
 
     if (arr.length < 2) return arr
 
-    do {
-        i++;
-        //console.log(i)
-    } while (arr[i] < arr[pivot]);
-    do {
-        //console.log(j)
-        j--;
-    } while (j > -1 && arr[j] >= arr[pivot]);
+    do { i++; } while (arr[i] <= arr[pivot]);
+    do { j--; } while (arr[j] > arr[pivot]);
+
+
     if (i > j) {
-        let pivElm = arr[pivot];
+        const pivElm = arr[pivot];
         arr[pivot] = arr[j];
         arr[j] = pivElm;
-
-        return [...sort(arr.slice(0, i), 0), ...sort(arr.slice(i, arr.length), 0)]
+        return [...sort(arr.slice(0, j)), arr[j], ...sort(arr.slice(j + 1, arr.length))]
     } else {
-        console.log(i)
-        console.log(j)
-        console.log("---------")
-
         let leftElm = arr[i];
         arr[i] = arr[j];
         arr[j] = leftElm;
 
-        return [...sort(arr, i)];
+        return [...sort(arr, i, j)];
     }
 }
 
-let res = []
-let arry = [10, 100, 9, 13, 2, 7, 30]
-let temp = sort(arry, 0, 7)
-console.log(arry)
+let arry = [15, 10, 100, 9, 13, 2, 23, 7, 30]
+console.log(sort(arry))
