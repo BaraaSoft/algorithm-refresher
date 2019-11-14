@@ -24,4 +24,7 @@ const sort = (arr, indexL, indexR) => {
 }
 
 let arry = [15, 10, 100, 9, 13, 2, 23, 7, 30]
-console.log(sort(arry))
+
+const stressTest = [...Array(1000).fill(0).map(x => Math.random() * 10)]
+
+console.log(sort(stressTest))
