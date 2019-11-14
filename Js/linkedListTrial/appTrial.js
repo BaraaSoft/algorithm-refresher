@@ -12,30 +12,53 @@ const LinkedList = function (rt) {
     }
 
     const create = function (data) {
-        createPr(this.roots, new Node(data));
+        _create(this.roots, new Node(data));
     }
 
     const traverse = () => {
         return new Promise((resolve, reject) => {
-            traversePr(this.roots, [], (data) => {
+            _traverse(this.roots, [], (data) => {
                 if (data) resolve(data)
             })
         })
     }
 
-    const traversePr = function (theRoot, result, callback) {
-        if (!theRoot.next) return callback([...result, theRoot.data]);
-        traversePr(theRoot.next, [...result, theRoot.data], callback)
+    const max = () => _max(this.roots);
+    const min = () => _min(this.roots);
+
+
+    const reverse = () => _reverse(this.roots);
+
+    const _reverse = function (node) {
+        if (!node) return [];
+        return [..._reverse(node.next), node.data]
     }
-    const createPr = function (theRoot, newNode) {
-        if (theRoot.next != null) return createPr(theRoot.next, newNode)
+    const _max = function (node) {
+        if (!node) return Number.MIN_SAFE_INTEGER;
+        let maxValue = _max(node.next);
+        return maxValue > node.data ? maxValue : node.data;
+    }
+
+    const _min = function (node) {
+        if (!node) return Number.MAX_SAFE_INTEGER;
+        let minValue = _min(node.next);
+        return minValue < node.data ? minValue : node.data;
+    }
+
+    const _traverse = function (theRoot, result, callback) {
+        if (!theRoot.next) return callback([...result, theRoot.data]);
+        _traverse(theRoot.next, [...result, theRoot.data], callback)
+    }
+    const _create = function (theRoot, newNode) {
+        if (theRoot.next != null) return _create(theRoot.next, newNode)
         theRoot.next = newNode;
     }
 
     return {
         setRoot: setRoot.bind(this),
         traverse: traverse.bind(this),
-        create: create.bind(this)
+        create: create.bind(this),
+        reverse: reverse.bind(this)
     }
 
 }
@@ -47,6 +70,6 @@ myLinkedList.create(11)
 myLinkedList.create(7)
 myLinkedList.create(9)
 
-myLinkedList.traverse().then(console.log)
-//console.log(myLinkedList.traverse())
+myLinkedList.traverse().then(console.log);
+console.log(myLinkedList.reverse())
 
