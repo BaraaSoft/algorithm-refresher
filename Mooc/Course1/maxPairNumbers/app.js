@@ -21,7 +21,7 @@ function readLine(line) {
 function max(arr) {
     // write your code here
     const [largeOne, largeTwo] = largestTwo(arr)
-    return largeTwo * largeTwo
+    return largeOne * largeTwo
 }
 
 function largestTwo(array) {

@@ -7,6 +7,6 @@ const gcd = (a, b) => {
 }
 
 console.log(gcd(3918848, 1653264))
-console.log(gcd(357, 234))
+console.log(gcd(16, 24))
 
 
