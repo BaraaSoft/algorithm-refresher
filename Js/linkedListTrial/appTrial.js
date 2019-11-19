@@ -28,6 +28,21 @@ const LinkedList = function (rt) {
 
 
     const reverse = () => _reverse(this.roots);
+    const find = (key) => this.roots = _find(this.roots, this.roots, null, key);
+
+    const _find = function (root, current, last, key) {
+        if (!current) {
+            return null;
+        }
+
+        if (current.data.key == key) {
+            last.next = current.next;
+            current.next = root;
+            return current;
+        }
+
+        return _find(root, current.next, current, key);
+    }
 
     const _reverse = function (node) {
         if (!node) return [];
@@ -58,18 +73,21 @@ const LinkedList = function (rt) {
         setRoot: setRoot.bind(this),
         traverse: traverse.bind(this),
         create: create.bind(this),
-        reverse: reverse.bind(this)
+        reverse: reverse.bind(this),
+        find: find.bind(this)
     }
 
 }
 
 
-const myLinkedList = LinkedList(new Node(10));
-myLinkedList.setRoot(new Node(23));
-myLinkedList.create(11)
-myLinkedList.create(7)
-myLinkedList.create(9)
+const myLinkedList = LinkedList(new Node({ key: 10, name: 'baraa' }));
+myLinkedList.setRoot(new Node({ key: 23, name: 'jobs' }));
+myLinkedList.create({ key: 11, name: 'john' })
+myLinkedList.create({ key: 7, name: 'Doe' })
+myLinkedList.create({ key: 3, name: 'rose' })
 
-myLinkedList.traverse().then(console.log);
-console.log(myLinkedList.reverse())
+//myLinkedList.traverse().then(console.log);
+console.log(myLinkedList.find(7))
+console.log(myLinkedList.find(11))
+console.log(myLinkedList.traverse())
 
