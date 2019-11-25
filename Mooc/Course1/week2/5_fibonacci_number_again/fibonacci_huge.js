@@ -1,4 +1,4 @@
-// by Alexander Nikolskiy
+// fibonacci_huge.js
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -23,21 +23,30 @@ function readLine(line) {
 function getFibMod(n, m) {
     // write your code here
 
-    return getPisanoPeriod(m)
+    if (n > m) {
+        const pisonPeriod = getPisanoPeriod(m);
+        const nearestFib = n % pisonPeriod;
+        return fib(nearestFib, m)
+    } else {
+        return fib(n, m)
+    }
 }
 
 module.exports = getFibMod;
 
 
-// function getPisanoPeriod(m) {
-//     let prev = 0;
-//     let curr = 1;
-//     for (let i = 0; i < m * m; i++) {
-//         curr = (curr + prev) % m;
-//         prev = curr;
-//         if (prev == 0 && curr == 1) return i + 1;
-//     }
-// }
+
+function fib(n, mod, result = []) {
+    if (n < 3) {
+        result[n] = 1;
+        return result[n];
+    }
+
+    let fibA = result[n - 1] || fib(n - 1, mod, result);
+    let fibB = result[n - 2] || fib(n - 2, mod, result);
+    result[n] = (fibA + fibB) % mod;
+    return result[n];
+}
 
 
 function getPisanoPeriod(m) {
