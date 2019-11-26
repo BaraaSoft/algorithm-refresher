@@ -18,6 +18,30 @@ function readLine(line) {
 
 
 function fibonacci_partial_sum(froms, to) {
-    console.log(">> <<")
-    console.log(`${froms} - ${to}`)
+    let resArr = [0];
+    fibon(to, resArr, froms, to)
+    return resArr[0] % 10;
 }
+
+
+function fibon(n, countArr, froms, to, result = []) {
+    if (n == 0) {
+        result[n] = 0;
+        return result[n]
+    }
+    if (n < 3) {
+        result[n] = 1;
+        if (n >= froms && n <= to)
+            countArr[0] += result[n];
+        return result[n];
+    }
+
+    let fibA = result[n - 1] || fibon(n - 1, countArr, froms, to, result);
+    let fibB = result[n - 2] || fibon(n - 2, countArr, froms, to, result);
+    result[n] = (fibA + fibB) % 100;
+    if (n >= froms && n <= to)
+        countArr[0] += result[n];
+
+    return result[n]
+}
+

@@ -41,4 +41,4 @@ function fibon(n, countArr, result = []) {
     return result[n]
 }
 
-module.exports = fib;
+module.exports = fibonacci_sum_last_digit;
