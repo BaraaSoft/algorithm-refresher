@@ -19,7 +19,10 @@ function fib(n) {
 }
 
 function fibLastDigit(n, result = []) {
-    if (n <= 1) {
+    if (n == 1) {
+        result[n] = 0
+    }
+    if (n < 3) {
         result[n] = 1;
         return result[n];
     }

@@ -19,12 +19,15 @@ function lcm(a, b) {
     let lga = a;
     let lgb = b;
     let largest = a > b ? a : b
+    let theI = 0;
+    if (a == 0 || b == 0) return 0;
     for (let i = largest; i <= (b * a); i++) {
         let conditionA = (i % a) == 0;
         let conditionB = (i % b) == 0;
         if (conditionA && conditionB) return i;
+        theI = i;
     }
-    return i;
+    return theI;
 }
 
 

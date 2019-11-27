@@ -1,4 +1,4 @@
-// fibonacci_squares_sum.js
+// fibonacci_sum_squares.js
 const readline = require('readline');
 const rl = readline.createInterface({
     input: process.stdin,
@@ -16,10 +16,10 @@ function readLine(line) {
 function fibonacci_squares_sum(n) {
 
     let resArr = [0];
-    fibon(n, resArr);
-
+    const pisonPeriod = getPisanoPeriod(100);
+    const nearestFib = n % pisonPeriod;
+    fibon(nearestFib, resArr)
     return resArr[0] % 10;
-
 }
 
 function fibon(n, countArr, result = []) {
@@ -27,7 +27,8 @@ function fibon(n, countArr, result = []) {
         result[n] = 0;
         return result[n]
     }
-    if (n < 3) {
+
+    if (n < 2) {
         result[n] = 1;
         countArr[0] += result[n]
         return result[n];
@@ -38,4 +39,17 @@ function fibon(n, countArr, result = []) {
     result[n] = (fibA + fibB) % 100;
     countArr[0] = result[n] * (fibA + result[n])
     return result[n]
+}
+
+
+function getPisanoPeriod(m) {
+    let a = 0;
+    let b = 1;
+    let c = a + b;
+    for (let i = 0; i < m * m; i++) {
+        c = (a + b) % m;
+        a = b;
+        b = c;
+        if (a == 0 && b == 1) return i + 1;
+    }
 }

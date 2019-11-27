@@ -20,7 +20,12 @@ function fib(n) {
 
 
 function fibon(n, result = []) {
-    if (n <= 2) {
+
+    if (n == 0) {
+        result[n] = 0;
+        return result[n];
+    }
+    if (n < 3) {
         result[n] = 1;
         return result[n];
     }

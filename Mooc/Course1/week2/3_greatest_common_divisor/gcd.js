@@ -19,8 +19,12 @@ function readLine(line) {
     }
 }
 
-function gcd(a, b) {
-    // write your code here
+const gcd = (a, b) => {
+    if (a == 0 || b == 0) return 0;
+    if (b == 0) return a;
+    const a1 = a % b;
+    return gcd(b, a1);
 }
+
 
 module.exports = gcd;

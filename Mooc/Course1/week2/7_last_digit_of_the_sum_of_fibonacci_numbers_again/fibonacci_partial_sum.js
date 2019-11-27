@@ -29,7 +29,7 @@ function fibon(n, countArr, froms, to, result = []) {
         result[n] = 0;
         return result[n]
     }
-    if (n < 3) {
+    if (n < 2) {
         result[n] = 1;
         if (n >= froms && n <= to)
             countArr[0] += result[n];
