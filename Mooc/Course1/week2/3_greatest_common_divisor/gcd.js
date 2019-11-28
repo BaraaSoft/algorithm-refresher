@@ -20,7 +20,7 @@ function readLine(line) {
 }
 
 const gcd = (a, b) => {
-    if (a == 0 || b == 0) return 0;
+    if (a == 0 && b == 0) return 0;
     if (b == 0) return a;
     const a1 = a % b;
     return gcd(b, a1);
