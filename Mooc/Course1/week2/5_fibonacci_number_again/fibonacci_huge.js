@@ -22,6 +22,7 @@ function readLine(line) {
 
 function getFibMod(n, m) {
     // write your code here
+    if (m == 0) return 0
 
     if (n > m) {
         const pisonPeriod = getPisanoPeriod(m);
@@ -37,7 +38,11 @@ module.exports = getFibMod;
 
 
 function fib(n, mod, result = []) {
-    if (n < 3) {
+    if (n == 0) {
+        result[n] = 0;
+        return result[n];
+    }
+    if (n < 2) {
         result[n] = 1;
         return result[n];
     }

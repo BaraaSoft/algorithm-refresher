@@ -15,12 +15,16 @@ function readLine(line) {
 
 function fib(n) {
     // write your code her
-    return fibLastDigit(n)
+
+    const pisonPeriod = getPisanoPeriod(10);
+    const newFibNum = n % pisonPeriod;
+    return fibLastDigit(newFibNum);
 }
 
 function fibLastDigit(n, result = []) {
-    if (n <= 1) {
-        result[n] = 1;
+
+    if (n < 2) {
+        result[n] = n;
         return result[n];
     }
     let numA; let numB;
@@ -33,6 +37,18 @@ function fibLastDigit(n, result = []) {
     let res = numA + numB
     result[n] = res % 10;
     return result[n];
+}
+
+function getPisanoPeriod(m) {
+    let a = 0;
+    let b = 1;
+    let c = a + b;
+    for (let i = 0; i < m * m; i++) {
+        c = (a + b) % m;
+        a = b;
+        b = c;
+        if (a == 0 && b == 1) return i + 1;
+    }
 }
 
 module.exports = fib;
