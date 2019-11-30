@@ -58,4 +58,27 @@ function checkContains(str = "", sprs) {
     return res.length > 0;
 }
 
+
+function abbrev(str) {
+    const strArr = str.split('');
+    const len = strArr.length - 2;
+
+    const first = strArr[0];
+    const last = strArr[strArr.length - 1];
+    if (strArr.length < 2) return first;
+    else if (strArr.length == 2) {
+        return `${first}${last}`
+    }
+    return `${first}${len}${last}`;
+}
+
+
+// console.log(abbrev('internationalisation'))  // 'i18n'
+// console.log(abbrev('a')) // 'a'
+// console.log(abbrev('ab')) // 'ab'
+// // separaters = ['-', '_', '/'] Monkey_D_Lufy/apple
+// console.log('>>>>>>>>>>>>>>>>>>>>>>')
+// console.log(abbrevPlus('Monkey-D_Lufy/apple'))  // 'M4y-D_L2y/a3e'
+// console.log(abbrevPlus('-Monkey_D/Lufy-/apple'))  // '-M4y_D/L2y-/a3e'
+
 console.log(solve())

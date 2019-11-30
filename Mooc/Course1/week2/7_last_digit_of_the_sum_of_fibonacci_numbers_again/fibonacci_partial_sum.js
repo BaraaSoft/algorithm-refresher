@@ -23,9 +23,9 @@ function fibonacci_partial_sum(froms, to) {
 
     const pisonPeriodB = getPisanoPeriod(10);
     const nearestFibB = to % pisonPeriodB;
-    let arr = []
+
     let resArr = [0];
-    fibon(nearestFibB, resArr, nearestFibA, nearestFibB, arr)
+    fibon(nearestFibB, resArr, nearestFibA, nearestFibB)
     return resArr % 10;
 }
 
@@ -38,8 +38,8 @@ function fibon(n, countArr, froms, to, result = []) {
         return result[n];
     }
 
-    let fibA = result[n - 1] || fibon(n - 1, countArr, froms, to, result) % 10;
-    let fibB = result[n - 2] || fibon(n - 2, countArr, froms, to, result) % 10;
+    let fibA = result[n - 1] || fibon(n - 1, countArr, froms, to, result);
+    let fibB = result[n - 2] || fibon(n - 2, countArr, froms, to, result);
     result[n] = (fibA + fibB) % 10;
     if ((n >= froms) && (n <= to))
         countArr[0] = countArr[0] + result[n];
