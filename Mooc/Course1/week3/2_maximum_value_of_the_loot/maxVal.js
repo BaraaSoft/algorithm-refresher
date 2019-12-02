@@ -55,7 +55,7 @@ function solve(knapsnacks, items) {
             item = items[current]
         }
         // kn 50 w 100
-        let amount = knapsnacks < item.weight ? knapsnacks : item.weight;
+        let amount = curryWeight < item.weight ? curryWeight : item.weight;
         let currentValue = amount * (item.value / item.weight);
         totalValue += currentValue;
         item.weight = item.weight - amount;
