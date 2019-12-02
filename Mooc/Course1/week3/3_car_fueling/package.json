@@ -1,0 +1,12 @@
+{
+  "name": "3_car_fueling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "car.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "node --nolazy --inspect-brk car.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

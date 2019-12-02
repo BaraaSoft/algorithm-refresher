@@ -48,7 +48,8 @@ function solve(knapsnacks, items) {
     let totalValue = 0;
     while (curryWeight > 0 && current < items.length) {
         let item = items[current];
-        if (item.weight < 1) {
+        // if no more switch to another item
+        if (parseFloat(item.weight).toFixed(4) <= 0.0001) {
             current += 1;
             if (current > items.length - 1) break;
             item = items[current]
