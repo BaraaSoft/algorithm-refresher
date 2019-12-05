@@ -24,7 +24,7 @@ function done() {
     const maxRange = parseInt(inputArr[1]);
 
     let stations = inputArr[inputArr.length - 1].split(' ').map(x => parseInt(x));
-    console.log(solve(distance, maxRange, stations))
+    console.log(solvePro(distance, maxRange, stations))
     process.exit();
 }
 
@@ -80,7 +80,7 @@ function solvePro(distance, maxRange, stations) {
     return stops.length - 1;
 }
 
-console.log(solve(950, 400, [200, 375, 550, 750]))
+//console.log(solve(950, 400, [200, 375, 550, 750]))
 // console.log(solve(700, 200, [100, 200, 300, 400]))
 // console.log(solve(10, 3, [1, 2, 5, 9])) //out -1 [0,1, 2, 5, 9,10]
 // // //console.log(solve(200, 250, [100, 150]))
