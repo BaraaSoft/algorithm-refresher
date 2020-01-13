@@ -1,0 +1,5 @@
+Intro:
+There are so many framework and tools to develop mobile application this days. But most of them has a steep learning caurve.
+for anyone coming from web development background. let's assume you already know React the next logical 
+thing todo to approach mobile development might be to go for React native. But what if i told you that you've another viable option, 
+and all while enjoying the beauty of ReactJs.

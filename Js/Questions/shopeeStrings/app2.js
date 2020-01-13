@@ -61,8 +61,9 @@ const findElegant = (mainStr = "", seperatators = []) => {
     return specialChar;
 }
 
-//const res = solver('baraa-d_google-react/shopee', theSeperators)
-//console.log(res.reverse().join(''))
 
-const res = findElegant('baraa', theSeperators)
-console.log(res);
+// const res = findElegant('baraa', theSeperators)
+// console.log(res);
+
+const res = solver('baraa-d_google-react/shopee', theSeperators)
+console.log(res.reverse().join(''))
