@@ -21,6 +21,5 @@ const isUnq = (str = "") => {
 const str1 = "Hello"
 const str2 = "AaBbCc"
 
-
 // console.log(isUnique("Hello, world"))
 console.log(isUnq(str1))
