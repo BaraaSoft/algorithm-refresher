@@ -32,3 +32,6 @@ const quickSort = (arr = [], l, h) => {
 let arry = [15, 10, 100, 9, 13, 2, 23, 7, 30]
 
 console.log(quickSort(arry, 0, arry.length))
+
+
+
