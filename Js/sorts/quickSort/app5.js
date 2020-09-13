@@ -1,7 +1,7 @@
 
 const partition = (arr = [], l, h) => {
-    const pivot = arr[l]
-    let i = l, j = h;
+    let i = l, j = h
+    let pivot = arr[l]
     do {
         do { i++; } while (arr[i] <= pivot);
         do { j--; } while (arr[j] > pivot);
@@ -12,13 +12,23 @@ const partition = (arr = [], l, h) => {
         }
     } while (i < j);
 
-    let replace = arr[l]
-    arr[l] = arr[j]
-    arr[j] = replace
+    let temp = arr[j]
+    arr[j] = pivot
+    arr[l] = temp
     return j
 }
 
-const quickSort = (arr = [], l, h) => {
+
+// Object.defineProperty(Array.prototype, "quickSort", {
+//     value: function qSort() {
+
+//     },
+//     configurable: true,
+//     writable: true
+// })
+
+
+function quickSort(arr = [], l, h) {
     let j;
     if (l < h) {
         j = partition(arr, l, h)
@@ -27,8 +37,6 @@ const quickSort = (arr = [], l, h) => {
     }
     return arr
 }
+let thearr = [15, 10, 100, 9, 13, 2, 23, 7, 30]
 
-
-let arry = [15, 10, 100, 9, 13, 2, 23, 7, 30]
-
-console.log(quickSort(arry, 0, arry.length))
+console.log(quickSort(thearr, 0, thearr.length))
