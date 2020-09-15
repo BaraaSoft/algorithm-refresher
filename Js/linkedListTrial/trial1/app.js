@@ -23,6 +23,25 @@ class LinkedList {
     }
 
 
+    reverse() {
+        this._reverse(this.root, null)
+    }
+
+
+    _reverse(currNode, prevNode) {
+        if (!currNode) return this.root = prevNode
+        this._reverse(currNode.next, currNode)
+        currNode.next = prevNode
+    }
+
+    //     if(currNode != null) {
+    //     this._reverse(currNode.next, currNode)
+    //     currNode.next = prevNode
+    // } else {
+    //     this.root = prevNode;
+    // }
+
+
     log(reverse) {
         console.log("----------------")
         if (reverse) return this._reverseLog(this.root)
@@ -66,7 +85,9 @@ list.add("Mirghani")
 list.add("Mohamed")
 list.add("Abuzaid")
 
-list.log(true)
+list.log()
+list.reverse()
+list.log()
 
 // list.find("Mirghani")
 // list.log()
