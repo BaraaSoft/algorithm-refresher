@@ -10,18 +10,13 @@ const condenseSpace = (str) => {
         } else if (char != ' ') {
             result = result + char
         }
-        else {
-            prev = char;
-            continue;
-        }
         prev = char
-
     }
     return result
 }
 
 
-console.log(condenseSpace("a     bc"))
+console.log(condenseSpace("a     b c     q"))
 
 
 // console.log("a   b   c".split(''))
