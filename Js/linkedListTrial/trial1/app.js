@@ -76,6 +76,51 @@ class LinkedList {
         return this._find(node.next, node, key)
     }
 
+
+    _isLoop(node) {
+        let q = node, p = node;
+        do {
+            q = q.next
+            q = q ? q.next : q
+        } while (q && p && q != p);
+        if (q == p) return true
+        else return false
+    }
+
+    _merge(first, second) {
+        let third, last;
+        if (first.data < second.data) {
+            last = third = first;
+            first = first.next
+            last.next = null
+        } else {
+            last = third = second
+            second = second.next
+            last.next = null
+        }
+
+        while (first && second) {
+            if (first.data < second.data) {
+                last.next = first
+                last = first
+                first = first.next
+                last.next = null
+            } else {
+                last.next = second
+                last = second
+                second = second.next
+                last.next = null
+            }
+        }
+
+        if (first) {
+            last.next = first
+        } else {
+            last.next = second
+        }
+    }
+
+
 }
 
 
