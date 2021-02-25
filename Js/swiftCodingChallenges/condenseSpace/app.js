@@ -17,6 +17,3 @@ const condenseSpace = (str) => {
 
 
 console.log(condenseSpace("a     b c     q"))
-
-
-// console.log("a   b   c".split(''))
