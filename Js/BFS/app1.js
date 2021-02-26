@@ -29,7 +29,7 @@ const solve = (graph, n, width) => {
         node = queue.pop();
         for (let e = 0; e <= len; e++) {
             if (graph[node][e] == 1) {
-                if (!visited[e] && !(queue.indexOf(n) > -1)) {
+                if (!visited[e]) {
                     visited[e] = 1
                     queue.push(e)
                     console.log(">> ", e)
