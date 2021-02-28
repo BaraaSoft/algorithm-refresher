@@ -1,5 +1,5 @@
 Intro:
-There are so many framework and tools to develop mobile application this days. But most of them comes with varying learning caurve depending on your background, for anyone coming from web development background. 
+There are so many framework and tools to develop mobile application this days. But most of them comes with varying learning caurve depending on your background. But, for those of us coming from web development background we might stuck into the choose paradox. 
 let's assume he already know React the next logical thing todo for approaching mobile development might be to go for React native. But what if i told you that you've another viable option, 
 and all while enjoying the beauty of React and by React I mean ReactJS (never leave the DOM).
 Guess what is it ? Yes, correct its Ionic once again, but this time with ReactJs and Capcitor. 
@@ -7,4 +7,4 @@ Ionic is free open source framework for developing native UI that works almost e
 allows the UI components to access underline platform specifics api. 
 The beauty of this approach become ovious because still using the ReactJS aka the DOM, so all your beloved tools and technics
 still applicable. Meanwhile, Capcitor  has very clean abstaction layer from the native platform api that actualy work well, not like react native 
-where in many cases you need to dig deeper into the platform specifics to carry certain implementations. 
+where in many cases you need to dig deeper into the platform specifics to carry certain tasks. 
