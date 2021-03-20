@@ -1,67 +1,64 @@
 
+// const fun = (callback, arg) => {
+//     callback.call(this, arg)
+// }
 
-function fib(n, memo = {}) {
-    if (n in memo) return memo[n];
-    if (n <= 2) {
-        return 1;
+
+// for (var i = 0; i < 10; i++) {
+//     fun((i) => {
+//         setTimeout(() => {
+//             console.log(i)
+//         }, 1000)
+//     }, i)
+
+// }
+
+// let project = [
+//     { name: "baraa", list: ["Iphone 10", "IPhone 6", "Iphone 52"] },
+//     { name: "baraa", list: ["Iphone 12", "IPhone 12 mini", "Iphone 7"] },
+// ]
+
+
+// for (const { name, list } of project) {
+
+//     console.log(name)
+// }
+
+
+//let arr = [7, 1, 3, 2, 4, 5, 6];
+
+
+
+const sort = (arr, a, b) => {
+    if (isSorted(arr)) return [];
+    let res = [];
+    if (a >= 0) {
+        sort(swap(arr, a, b), a - 1, b)
+        res.push([a, b])
     }
-    memo[n] = fib(n - 2) + fib(n - 1);
-    return memo[n];
-}
-
-
-
-function pathCombination(n, m, memo = {}) {
-    const key = n + ',' + m
-    if (key in memo) return memo[key];
-    if (n == 0 || m == 0) return 0;
-    if (n < 2 || m < 2) return 1
-
-    memo[key] = pathCombination(n - 1, m, memo) + pathCombination(n, m - 1, memo);
-    return memo[key];
-}
-
-
-//console.log(pathCombination(3, 3))
-//console.log(pathCombination(18, 18))
-
-
-function canSum(target, arr, memo = {}) {
-    if (target in memo) return memo[target]
-    if (target == 0) return true;
-    if (target < 0) return false;
-
-    for (let num of arr) {
-        target -= num;
-        if (canSum(target, arr) == true) {
-            memo[target] = true
-            return true;
-        }
-    }
-    memo[target] = false;
-    return false;
-}
-
-// console.log(canSum(7, [2, 3]))
-// console.log(canSum(7, [2, 4]))
-// console.log(canSum(700, [2, 4]))
-
-
-function howSum(target, arr) {
-    if (target === 0) return []
-    if (target < 0) return null
-
-    for (let num of arr) {
-        let reminder = target - num;
-        let res = howSum(reminder, arr)
-        if (res !== null) {
-            return [...res, num]
-        }
+    else if (b >= 0) {
+        sort(swap(arr, a, b), a, b - 1)
+        res.push([a, b])
     }
 
-    return null
+    return res;
 }
 
+const isSorted = (arr) => {
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i + 1] < arr[i]) return false;
+    }
+    return true;
+}
+
+const swap = (arr, a, b) => {
+    let temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp
+    return arr
+}
+
+let arr = [7, 1, 3, 2, 4, 5, 6]
+console.log(sort(arr, arr.length - 1, arr.length - 1))
 
 
-console.log(howSum(14, [3, 2, 5]))
