@@ -7,9 +7,6 @@ var maxProfit = function (arr) {
 
     let min = Number.MAX_VALUE;
     let profit = 0
-
-
-
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] < min) {
             min = arr[i]
