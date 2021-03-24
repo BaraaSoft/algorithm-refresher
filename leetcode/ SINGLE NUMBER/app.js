@@ -33,6 +33,20 @@ var singleNumber = function (arr) {
 
 
 
+// Elegant solution
+function singleNumberElegant(arr) {
+
+    let a = 0
+
+    for (let elm of arr) {
+        a ^= elm
+    }
+
+    return a;
+}
+
+
+
 let arr = [4, 1, 2, 1, 2]
 console.log(single(arr));
 
