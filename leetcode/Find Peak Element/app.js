@@ -20,3 +20,24 @@ var findPeakElement = function (nums) {
     return peak
 
 };
+
+
+const binarySearch = (nums) => {
+    let left = 0;
+    let right = nums.length - 1
+    while (left < right) {
+        let mid = left + (right - left) / 2
+        if (nums[mid] < nums[mid + 1]) {
+            left = mid + 1
+        } else {
+            right = mid
+        }
+    }
+
+
+    return left
+}
+
+
+
+console.log(binarySearch([1, 0, 2, 3, 5]))
