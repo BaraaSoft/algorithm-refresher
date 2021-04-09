@@ -27,14 +27,15 @@ console.log(letterCombinations("23"))
 
 function allCombin(digits, mapping) {
     if (digits == "") return [""]
-    let res = []
+
     let [first, ...rest] = digits;
     let subArr = allCombin(rest, mapping)
 
-    for (let grop of subArr) {
-        let letters = mapping[first]
+    let letters = mapping[first]
+    let res = []
+    for (let str of subArr) {
         for (let char of letters) {
-            res.push(char + grop)
+            res.push(char + str)
         }
     }
     return res
@@ -42,3 +43,4 @@ function allCombin(digits, mapping) {
 
 let mapping = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
 console.log(allCombin("23", mapping))
+

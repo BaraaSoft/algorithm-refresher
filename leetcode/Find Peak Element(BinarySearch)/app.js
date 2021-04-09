@@ -56,7 +56,6 @@ function findStartOfRepeatingElm(arr, elm) {
 }
 //console.log(findStartOfRepeatingElm([1, 2, 2, 3, 3, 3, 5], 3))
 
-
 /* Detect number of rotation to sorted array */
 function numberOfRotation(arr) {
     let left = 0;
