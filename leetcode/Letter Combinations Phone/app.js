@@ -23,3 +23,22 @@ const combin = (result = [], str, mapping, digits, index) => {
 }
 
 console.log(letterCombinations("23"))
+
+
+function allCombin(digits, mapping) {
+    if (digits == "") return [""]
+    let res = []
+    let [first, ...rest] = digits;
+    let subArr = allCombin(rest, mapping)
+
+    for (let grop of subArr) {
+        let letters = mapping[first]
+        for (let char of letters) {
+            res.push(char + grop)
+        }
+    }
+    return res
+}
+
+let mapping = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+console.log(allCombin("23", mapping))
