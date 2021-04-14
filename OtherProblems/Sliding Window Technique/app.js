@@ -29,7 +29,6 @@ function smallestSubarry(arr, target) {
     for (let j = 0; j < arr.length; j++) {
         sum += arr[j]
         while (sum >= target) {
-            // minSize = Math.min(j - i + 1, minSize)
             if (j - i + 1 < minSize) {
                 res = [i, j]
                 minSize = j - i + 1
@@ -43,4 +42,42 @@ function smallestSubarry(arr, target) {
 
 
 
-console.log(smallestSubarry([4, 2, 2, 7, 8, 1, 2, 5, 1, 0], 8))
+//console.log(smallestSubarry([4, 2, 2, 7, 8, 1, 2, 5, 1, 0], 8))
+
+/* Longest substring with K distinct characters */
+function longestSubString(str, k) {
+    let map = new Map();
+    let maxSize = Number.MIN_VALUE;
+    let i = 0
+    for (let j = 0; j < str.length; j++) {
+        if (map.has(str[j])) {
+            let val = map.get(str[j])
+            map.set(str[j], val + 1)
+        } else {
+            map.set(str[j], 1)
+        }
+        let distinct = [...map.keys()]
+
+        if (distinct.length <= k) {
+            maxSize = Math.max(j - i + 1, maxSize)
+        }
+        while (distinct.length > k && i < j) {
+            let char = str[i]
+            let charCount = map.get(char)
+            if (charCount > 0) {
+                map.set(char, charCount - 1);
+                if (charCount - 1 <= 0) {
+                    map.delete(char)
+                }
+            }
+            distinct = [...map.keys()]
+            i++;
+        }
+
+    }
+
+
+    return maxSize
+}
+
+console.log(longestSubString("AAAHHIBC", 2))
