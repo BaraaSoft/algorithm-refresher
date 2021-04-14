@@ -56,12 +56,11 @@ function longestSubString(str, k) {
         } else {
             map.set(str[j], 1)
         }
-        let distinct = [...map.keys()]
 
-        if (distinct.length <= k) {
+        if (map.size <= k) {
             maxSize = Math.max(j - i + 1, maxSize)
         }
-        while (distinct.length > k && i < j) {
+        while (map.size > k && i < j) {
             let char = str[i]
             let charCount = map.get(char)
             if (charCount > 0) {
@@ -70,14 +69,12 @@ function longestSubString(str, k) {
                     map.delete(char)
                 }
             }
-            distinct = [...map.keys()]
             i++;
         }
-
     }
-
-
     return maxSize
 }
+
+
 
 console.log(longestSubString("AAAHHIBC", 2))
