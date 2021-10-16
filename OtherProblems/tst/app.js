@@ -1,40 +1,29 @@
 
-const input = [
-    [0, 3],
-    [0, 6],
-    [0, 17],
-    [8, 11],
-    [19, 23]
-]
-
-const constructOptimalSchedule = (intervals) => {
-
-    // let arr = intervals.sort((a, b) => {
-    //     const gapA = a[1] - a[0];
-    //     const gapB = b[1] - b[0];
-    //     return gapA - gapB;
-    // });
-   let res = [intervals[0]]
-
-   for(let i=1;i<intervals.length;i++){
-       const last = res.length -1;
-       const [start,end] = intervals[i];
-       const gap = end - start;
-       const [startRes,endRes] = res[last];
-       const gapRes = endRes - startRes
-       if(endRes < start){
-           res.push([start, end])
-       }else{
-           if(gap > gapRes){
-               res.pop()
-               res.push([startRes, endRes])
-           }
-       }
-   }
-  
-    return res
+function TreeNode(val, left, right) {
+    this.val = (val === undefined ? 0 : val)
+    this.left = (left === undefined ? null : left)
+    this.right = (right === undefined ? null : right)
 }
 
-console.log(constructOptimalSchedule(input))
+var buildTree = function (preorder, inorder) {
+    //console.log(constr(preorder,inorder))
+    return constr(preorder, inorder);
+};
+
+const constr = (pre, ino) => {
+    if (ino.length < 1 || !pre[0]) return null
+
+    let mid = ino.indexOf(pre[0])
+    let preO = pre.slice(1)
+    let leftTree = ino.slice(0, mid)
+    let rightTree = ino.slice(mid + 1)
+    // console.log({leftTree,pre:pre[0],rightTree})
+    // console.log({preO:preO})
+    // console.log({preO2:preO.slice(1)})
+    let preO2 = preO.slice(1).length < 1 ? preO : preO.slice(1)
+    return new TreeNode(pre[0], constr(preO, leftTree), constr(preO2, rightTree))
+
+}
 
 
+console.log(buildTree([1,2,3],[1,2,3]))
