@@ -1,29 +1,27 @@
 
-function TreeNode(val, left, right) {
-    this.val = (val === undefined ? 0 : val)
-    this.left = (left === undefined ? null : left)
-    this.right = (right === undefined ? null : right)
-}
 
-var buildTree = function (preorder, inorder) {
-    //console.log(constr(preorder,inorder))
-    return constr(preorder, inorder);
-};
 
-const constr = (pre, ino) => {
-    if (ino.length < 1 || !pre[0]) return null
+const heapIn = (arr,index)=>{
+    let n = index;
+    let temp = arr[index];
 
-    let mid = ino.indexOf(pre[0])
-    let preO = pre.slice(1)
-    let leftTree = ino.slice(0, mid)
-    let rightTree = ino.slice(mid + 1)
-    // console.log({leftTree,pre:pre[0],rightTree})
-    // console.log({preO:preO})
-    // console.log({preO2:preO.slice(1)})
-    let preO2 = preO.slice(1).length < 1 ? preO : preO.slice(1)
-    return new TreeNode(pre[0], constr(preO, leftTree), constr(preO2, rightTree))
+    while(n > 0 && temp > arr[n%2 ==0?(n/2)-1:Math.floor(n/2)] ){
 
+    }
 }
 
 
-console.log(buildTree([1,2,3],[1,2,3]))
+const sort = (arr)=>{
+    for(let i =0;i<arr.length;i++){
+        let elm= arr[i];
+        let j = i;
+        while(j>0 && elm < arr[j-1]){
+            arr[j] = arr[j-1];
+            j -=1;
+        }
+        arr[j] = elm
+    }
+    return arr;
+}
+
+console.log(sort([12,3,8,2,7]))
