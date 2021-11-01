@@ -1,40 +1,27 @@
 
-const input = [
-    [0, 3],
-    [0, 6],
-    [0, 17],
-    [8, 11],
-    [19, 23]
-]
 
-const constructOptimalSchedule = (intervals) => {
 
-    // let arr = intervals.sort((a, b) => {
-    //     const gapA = a[1] - a[0];
-    //     const gapB = b[1] - b[0];
-    //     return gapA - gapB;
-    // });
-   let res = [intervals[0]]
+const heapIn = (arr,index)=>{
+    let n = index;
+    let temp = arr[index];
 
-   for(let i=1;i<intervals.length;i++){
-       const last = res.length -1;
-       const [start,end] = intervals[i];
-       const gap = end - start;
-       const [startRes,endRes] = res[last];
-       const gapRes = endRes - startRes
-       if(endRes < start){
-           res.push([start, end])
-       }else{
-           if(gap > gapRes){
-               res.pop()
-               res.push([startRes, endRes])
-           }
-       }
-   }
-  
-    return res
+    while(n > 0 && temp > arr[n%2 ==0?(n/2)-1:Math.floor(n/2)] ){
+
+    }
 }
 
-console.log(constructOptimalSchedule(input))
 
+const sort = (arr)=>{
+    for(let i =0;i<arr.length;i++){
+        let elm= arr[i];
+        let j = i;
+        while(j>0 && elm < arr[j-1]){
+            arr[j] = arr[j-1];
+            j -=1;
+        }
+        arr[j] = elm
+    }
+    return arr;
+}
 
+console.log(sort([12,3,8,2,7]))
