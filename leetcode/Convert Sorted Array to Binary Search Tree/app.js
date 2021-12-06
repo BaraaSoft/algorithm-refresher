@@ -23,3 +23,9 @@ const build = (nums) => {
     treeNode.right = build(nums.slice(mid + 1))
     return treeNode
 }
+
+
+const find = (node,target)=>{
+    if(node.val == target) return target;
+    if(target < node.left)
+}
