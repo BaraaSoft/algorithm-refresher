@@ -5,7 +5,7 @@ var search = function (nums, target) {
 
 
 
-const bsearch = (nums,target,l,h)=>{
+const bsearch = (nums,target,l,h)=>{ // h = nums.length -1
 
     if(h >= l){
         const mid = l + Math.floor((h - l)/2)

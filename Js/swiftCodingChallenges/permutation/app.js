@@ -8,7 +8,7 @@ const perm = (str, current = "", result = []) => {
         for (let i = 0; i < str.length; i++) {
             let start = str.slice(0, i)
             let end = str.slice(i + 1, str.length)
-            prem(start + end, current + str[i], result)
+            perm(start + end, current + str[i], result)
         }
     }
 
