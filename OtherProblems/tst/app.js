@@ -197,10 +197,10 @@ let edges = [
 ];
 
 let graph = create(edges);
-console.log(graph)
+//console.log(graph)
 
 let topOrd = new TopologicalSort(graph);
-console.log(topOrd.stack.reverse());
+//console.log(topOrd.stack.reverse());
 
 
 const dfs = (node,map,visited = new Set())=>{
@@ -235,16 +235,28 @@ const noCycleDfs = (node,map,visited= new Set())=>{
 
 // 
 
-const solve = (n)=>{
-    if(n.length == 1) return n;
-    let start = n
-    return solve()
 
+
+
+const solve = (arr,target)=>{
+
+    let product = 1,left = 0;
+    let res = [];
+    for(let i =0;i<arr.length;i++){
+        product *=arr[i];
+        while(product >= target && left < arr.length){
+            product /= arr[left++]
+        }
+        let subarr = []
+        for(let j = i;j>left-1;j--){
+            subarr.unshift(arr[j])
+            res.push(subarr)
+        }
+    }
+
+    return res
 }
 
-let str= "Baraa Abuzaid";
-let last = str.slice(1)
-console.log({last})
-
-
+console.log(solve([2, 5, 3, 10], 30));
+console.log(solve([8, 2, 6, 5], 50));
 
