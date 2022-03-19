@@ -1,109 +1,367 @@
+
+const Heap = require('collections/heap');
+
+// let str = "ello";
+
+// let code  = str.charCodeAt(0);
+// let hex = (code & 0xff ).toString(16)
+// console.log( parseInt('048',16))
+
+
+// console.log(parseInt('082',16))
+
+//---------------------------------------------------------------------------
+
 /**
- * @param {number[][]} moves
+ * Encodes a list of strings to a single string.
+ *
+ * @param {string[]} strs
  * @return {string}
  */
 
-const State= {
-    A:'A',
-    B:'B',
-    Pending:'Pending',
-    Draw:'Draw'
-}
-var tictactoe = function (moves) {
-    let xlist = [];
-    let olist = [];
-    let matrix = Array(3).fill(0).map(x => new Array(3).fill(null))
 
-    for (let i = 0; i < moves.length; i++) {
-        let [rw, cl] = moves[i];
-        if (i % 2 == 0) {
-            matrix[rw][cl] = 'x'
-        } else {
-            matrix[rw][cl] = 'o'
-        }
+var encode = function (strs) {
+    let list = [];
+    for (let str of strs) {
+        list.push(string2Bin(str))
     }
-
-    let colOrigin = [];
-    let rowOrigin = [];
-    let mainDiagonal = [0, 0]
-    let secDiagonal = [0, 2]
-    for (let i = 0; i < 3; i++) {
-        colOrigin.push([0, 0 + i]);
-        rowOrigin.push([0 + i, 0]);
-
-    }
-
-    let isPending = false;
-    for (let [row,col] of rowOrigin) {
-        let tempRes = winRowCol(matrix, row, col, true);
-        if(tempRes == State.A) return 'A'
-        if(tempRes == State.B) return 'B'
-        if(tempRes == State.Pending ) isPending = true
-    }
-    for(let [row,col]of colOrigin){
-        let tempRes = winRowCol(matrix, row, col, false);
-        if (tempRes == State.A) return 'A'
-        if (tempRes == State.B) return 'B'
-        if (tempRes == State.Pending) isPending = true
-    }
-
-    let mainDiagSttate =  winDiagonal(matrix,mainDiagonal[0],mainDiagonal[1],true)
-    if (mainDiagSttate == State.A) return 'A'
-    if (mainDiagSttate == State.B) return 'B'
-    if (mainDiagSttate == State.Pending) isPending = true
-    let secDiagSttate = winDiagonal(matrix, secDiagonal[0], secDiagonal[1], false)
-    if (secDiagSttate == State.A) return 'A'
-    if (secDiagSttate == State.B) return 'B'
-    if (secDiagSttate == State.Pending) isPending = true
-
-    return isPending ? State.Pending : State.Draw
+    console.log(list)
+    return ''
 };
 
-const winRowCol = (matrix, row, col,checkRow) => {
-    let countX = 0;
-    let countO = 0;
-    let empty = 0
-    for (let i = 0; i < 3; i++) {
-        let [rw, cl] = checkRow ? [row, col + i] : [row+i, col]
-        if (matrix[rw][cl] == 'x')
-            countX++;
-        else if (matrix[rw][cl] == 'o')
-            countO++;
-        else {
-            empty++;
+/**
+ * Decodes a single string to a list of strings.
+ *
+ * @param {string} s
+ * @return {string[]}
+ */
+var decode = function (s) {
+    return;
+};
+
+/**
+ * Your functions will be called as such:
+ * decode(encode(strs));
+ */
+
+
+function string2Bin(str) {
+    var result = [d2h(str.length)];
+    for (var i = 0; i < str.length; i++) {
+        result.push(d2h(str.charCodeAt(i)));
+    }
+    return result;
+}
+
+function bin2String(array) {
+    return String.fromCharCode.apply(String, array);
+}
+
+function d2h(d) {
+    var h = (d).toString(16);
+    if (h.length === 1) {
+        return '00' + h
+    } else if (h.length === 2) {
+        return '0' + h
+    }
+    return h
+}
+
+// Bianry search
+
+
+const search = (arr,item)=>{
+    let start = 0;
+    let end = arr.length -1;
+
+    while(start <= end){
+        mid = start + Math.floor((end - start) / 2);
+        if(arr[mid] == item ){
+            return mid
+        }else if(arr[mid] > item){
+            end = mid -1
+        }else{
+            start = mid +1
         }
     }
 
-    if (countX == 3) return State.A
-    if (countO == 3) return State.B
-    if (empty > 0) return State.Pending
-    return State.Draw
+    return -1
 }
 
-const winDiagonal = (matrix,row,col,isMainDiagonal)=>{
-    let countX = 0;
-    let countO = 0;
-    let empty = 0
-    for (let i = 0; i < 3; i++) {
-        let [rw, cl] = isMainDiagonal ? [row+i, col + i] : [row - i, col -i]
-        if (matrix[rw][cl] == 'x')
-            countX++;
-        else if (matrix[rw][cl] == 'o')
-            countO++;
-        else {
-            empty++;
+
+
+// Kruskal
+
+// const edges = [
+//     [1, 2, 25],
+//     [1, 6, 5],
+//     [2, 3, 12],
+//     [2, 7, 10],
+//     [3, 4, 8],
+//     [4, 5, 16],
+//     [4, 7, 14],
+//     [5, 6, 20],
+//     [5, 7, 18]
+// ]
+
+
+class DSU {
+    constructor(size){
+        this.arr = new Array(size).fill(-1)
+    }
+    
+    find(u){
+        let x = u;
+        let arr = this.arr;
+        while(arr[x] > 0){
+            x = arr[x]
+        }
+        while(x != u){
+            [arr[u],u] = [x,arr[u]]
+        }
+        return x
+    }
+
+
+    union(u,v){
+        let arr = this.arr;
+        if(arr[u] < arr[v]){
+            arr[u] += arr[v]
+            arr[v] = u
+        }else{
+            arr[v] += arr[u]
+            arr[u] = v
+        }
+    }
+}
+
+// 
+
+class TopologicalSort{
+   visited = {};
+   stack = [];
+   graph = {}
+   constructor(graph){
+       this.graph = graph;
+   }
+   init(){
+       for(let [key,val] of Object.entries(this.graph)){
+           if(!this.visited[key]){
+               this.traverse(key)
+           }
+       }
+       return this;
+   }
+   traverse(node){
+       this.visited[node] = true;
+       for(let n of this.graph[node]){
+           if(!this.visited[n])
+                this.traverse(n)
+       }
+       this.stack.push(node)
+   }
+    
+}
+
+
+const isNoCycle=(node,graph,set= new Set())=>{
+    if(set.has(node)) return false;
+    if(!graph[node]) return true;
+    set.add(node);
+    for(let n of graph[node]){
+        if(!isNoCycle(n,graph,set)) return false;
+    }
+    set.delete(node);
+    delete graph[node];
+    return true;
+}
+
+function create(edges){
+
+    let map = {};
+    for (let [start, end] of edges) {
+        if (!map[start]) map[start] = [];
+        if (!map[end]) map[end] = [];
+        map[start].push(end);
+       
+    }
+    return map;
+}
+
+let edges = [
+    ['a','c'],
+    ['a','b'],
+    ['c','d'],
+    ['c','b'],
+    ['b','d']
+];
+
+let graph = create(edges);
+//console.log(graph)
+
+let topOrd = new TopologicalSort(graph);
+//console.log(topOrd.stack.reverse());
+
+
+const dfs = (node,map,visited = new Set())=>{
+    if(visited.has(node)) return false;
+    if(!map[node]) return true;
+
+    visited.add(node);
+    for(let n of map[node]){
+        if(!dfs(n,map,visited)) return false;
+    }
+    visited.delete(n)
+    delete map[node];
+    return true
+
+}
+
+
+const noCycleDfs = (node,map,visited= new Set())=>{
+    if(visited.has(node)) return false;
+    if(!map[node]) return true;
+    visited.add(node);
+    for(let n of map[node]){
+        if(!noCycleDfs(n,map,visited))
+            return false
+    }
+    visited.delete(node)
+    delete map[node];
+    return true;
+}
+
+
+
+// const solve = (arr,k)=>{
+
+//     const heap = new Heapz([],null,(a,b)=>a[1]-b[1])
+//     let map = new Map();
+//     for(let i=0;i<arr.length;i++){
+//         let val =  map.get(arr[i]) + 1 || 1;   
+//         map.set(arr[i],val)
+//     }
+//     console.log({map})
+//     for(let i=0;i<k;i++){
+//         heap.push([arr[i],map.get(arr[i])])
+//     }
+//     for(let i=k;i<arr.length;i++){
+//         let curr = map.get(arr[i])
+//         if(curr > heap.peek()[1] ){
+//             heap.pop()
+//             heap.push([arr[i],curr])
+//         }
+//     }
+//     console.log({heap:heap.arr})
+//     return heap.arr.map((x)=>x[0])
+// }
+
+class Heapz{
+  
+    constructor(arr,val,func){
+        this.compare = func;
+        this.arr = arr;
+    }
+    push(item){
+        this.arr.push(item);
+        this.arr.sort(this.compare)
+    }
+    pop(){
+        let num  = this.arr.shift();
+        this.arr.sort(this.compare)
+        return num
+    }
+    peek(){
+        return this.arr[0]
+    }
+
+    get length(){
+        return this.arr.length
+    }
+}
+
+
+
+
+class Edge{
+    constructor(weight,start,end){
+        this.start = start;
+        this.end = end;
+        this.weight = weight;
+    }
+}
+
+class Vertex{
+    constructor(name){
+        this.name = name;
+        this.edges = []
+        this.visited = false;
+        this.distance = Number.MAX_VALUE;
+        this.predecessor = null;
+    }
+}
+
+
+class Dijstra{
+
+
+    computePath(source){
+        source.distance = 0;
+        const heap = new Heapz([],null,(a,b)=>a.distance-b.distance)
+        heap.push(source)
+        while(heap.length > 0){
+            let currVertex =  heap.pop();
+            for(let edge of currVertex.edges){
+                let end = edge.end;
+                let distance = currVertex.distance + edge.weight;
+                if(distance < end.distance ){
+                    heap.arr = heap.arr.filter(x=>x.name != end.name)
+                    end.distance = distance;
+                    end.predecessor = currVertex;
+                    heap.push(end)
+                }
+            }
+
         }
     }
 
-    if (countX == 3) return State.A
-    if (countO == 3) return State.B
-    if (empty > 0) return State.Pending
-    return State.Draw
+    getShortestPathTo(targetVertex){
+        let path = [];
+       let curr = targetVertex
+        while(curr != null){
+            path.push(curr)
+            curr = curr.predecessor;  
+        }
+        return path.reverse()
+    }
+}
+
+
+const solveDik = ()=>{
+    let vertex0 = new Vertex('A')
+    let vertex1= new Vertex('B')
+    let vertex2 = new Vertex('C')
+    let vertex3 = new Vertex('D')
+    let vertex4 = new Vertex('E')
+    let vertex5 = new Vertex('F')
+    let vertex6 = new Vertex('G')
+    let vertex7 = new Vertex('H');
+
+    vertex0.edges = [new Edge(5,vertex0,vertex1),new Edge(9,vertex0,vertex4),new Edge(8,vertex0,vertex7)]
+    vertex1.edges = [new Edge(12,vertex1,vertex2),new Edge(15,vertex1,vertex3),new Edge(4,vertex1,vertex7)]
+    vertex2.edges = [new Edge(3,vertex2,vertex3),new Edge(11,vertex2,vertex6)]
+    vertex3.edges = [new Edge(9,vertex3,vertex6)]
+
+    vertex4.edges = [new Edge(4,vertex4,vertex5),new Edge(20,vertex4,vertex6),new Edge(5,vertex4,vertex7)]
+    vertex5.edges = [new Edge(1,vertex5,vertex2),new Edge(13,vertex5,vertex7)]
+
+    vertex7.edges = [new Edge(7,vertex7,vertex2),new Edge(6,vertex7,vertex5)]
+
+    const dijkstra = new Dijstra();
+    dijkstra.computePath(vertex0)
+    console.log(dijkstra.getShortestPathTo(vertex6).map(x=>x.name))
 
 }
 
 
-
-let input = [[0, 0], [2, 0], [1, 1], [2, 1], [2, 2]]
-
-console.log(tictactoe(input))
+solveDik()

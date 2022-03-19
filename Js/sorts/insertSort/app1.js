@@ -8,7 +8,6 @@ const insertSort = (orgArr) => {
         const element = resetArr[i];
         arr = shiftInsert(arr, element);
     }
-
     return arr;
 }
 
