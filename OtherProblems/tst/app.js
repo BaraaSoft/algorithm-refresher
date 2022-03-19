@@ -1,5 +1,5 @@
 
-
+const Heap = require('collections/heap');
 
 // let str = "ello";
 
@@ -233,30 +233,135 @@ const noCycleDfs = (node,map,visited= new Set())=>{
 
 
 
-// 
+// const solve = (arr,k)=>{
+
+//     const heap = new Heapz([],null,(a,b)=>a[1]-b[1])
+//     let map = new Map();
+//     for(let i=0;i<arr.length;i++){
+//         let val =  map.get(arr[i]) + 1 || 1;   
+//         map.set(arr[i],val)
+//     }
+//     console.log({map})
+//     for(let i=0;i<k;i++){
+//         heap.push([arr[i],map.get(arr[i])])
+//     }
+//     for(let i=k;i<arr.length;i++){
+//         let curr = map.get(arr[i])
+//         if(curr > heap.peek()[1] ){
+//             heap.pop()
+//             heap.push([arr[i],curr])
+//         }
+//     }
+//     console.log({heap:heap.arr})
+//     return heap.arr.map((x)=>x[0])
+// }
+
+class Heapz{
+  
+    constructor(arr,val,func){
+        this.compare = func;
+        this.arr = arr;
+    }
+    push(item){
+        this.arr.push(item);
+        this.arr.sort(this.compare)
+    }
+    pop(){
+        let num  = this.arr.shift();
+        this.arr.sort(this.compare)
+        return num
+    }
+    peek(){
+        return this.arr[0]
+    }
+
+    get length(){
+        return this.arr.length
+    }
+}
 
 
 
 
-const solve = (arr,target)=>{
+class Edge{
+    constructor(weight,start,end){
+        this.start = start;
+        this.end = end;
+        this.weight = weight;
+    }
+}
 
-    let product = 1,left = 0;
-    let res = [];
-    for(let i =0;i<arr.length;i++){
-        product *=arr[i];
-        while(product >= target && left < arr.length){
-            product /= arr[left++]
-        }
-        let subarr = []
-        for(let j = i;j>left-1;j--){
-            subarr.unshift(arr[j])
-            res.push(subarr)
+class Vertex{
+    constructor(name){
+        this.name = name;
+        this.edges = []
+        this.visited = false;
+        this.distance = Number.MAX_VALUE;
+        this.predecessor = null;
+    }
+}
+
+
+class Dijstra{
+
+
+    computePath(source){
+        source.distance = 0;
+        const heap = new Heapz([],null,(a,b)=>a.distance-b.distance)
+        heap.push(source)
+        while(heap.length > 0){
+            let currVertex =  heap.pop();
+            for(let edge of currVertex.edges){
+                let end = edge.end;
+                let distance = currVertex.distance + edge.weight;
+                if(distance < end.distance ){
+                    heap.arr = heap.arr.filter(x=>x.name != end.name)
+                    end.distance = distance;
+                    end.predecessor = currVertex;
+                    heap.push(end)
+                }
+            }
+
         }
     }
 
-    return res
+    getShortestPathTo(targetVertex){
+        let path = [];
+       let curr = targetVertex
+        while(curr != null){
+            path.push(curr)
+            curr = curr.predecessor;  
+        }
+        return path.reverse()
+    }
 }
 
-console.log(solve([2, 5, 3, 10], 30));
-console.log(solve([8, 2, 6, 5], 50));
 
+const solveDik = ()=>{
+    let vertex0 = new Vertex('A')
+    let vertex1= new Vertex('B')
+    let vertex2 = new Vertex('C')
+    let vertex3 = new Vertex('D')
+    let vertex4 = new Vertex('E')
+    let vertex5 = new Vertex('F')
+    let vertex6 = new Vertex('G')
+    let vertex7 = new Vertex('H');
+
+    vertex0.edges = [new Edge(5,vertex0,vertex1),new Edge(9,vertex0,vertex4),new Edge(8,vertex0,vertex7)]
+    vertex1.edges = [new Edge(12,vertex1,vertex2),new Edge(15,vertex1,vertex3),new Edge(4,vertex1,vertex7)]
+    vertex2.edges = [new Edge(3,vertex2,vertex3),new Edge(11,vertex2,vertex6)]
+    vertex3.edges = [new Edge(9,vertex3,vertex6)]
+
+    vertex4.edges = [new Edge(4,vertex4,vertex5),new Edge(20,vertex4,vertex6),new Edge(5,vertex4,vertex7)]
+    vertex5.edges = [new Edge(1,vertex5,vertex2),new Edge(13,vertex5,vertex7)]
+
+    vertex7.edges = [new Edge(7,vertex7,vertex2),new Edge(6,vertex7,vertex5)]
+
+    const dijkstra = new Dijstra();
+    dijkstra.computePath(vertex0)
+    console.log(dijkstra.getShortestPathTo(vertex6).map(x=>x.name))
+
+}
+
+
+solveDik()
