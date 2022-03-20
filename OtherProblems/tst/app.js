@@ -364,4 +364,19 @@ const solveDik = ()=>{
 }
 
 
-solveDik()
+/********************/
+/***** Dijkstar *****/
+/********************/
+
+const lowest = (costs,visited)=>{
+    let sm = null;
+    for(let [node,cost] of costs){
+        if(!visited.includes(node)){
+            if(costs[sm] == null || costs[node] < costs[sm]){
+                sm = node
+            }
+        }
+    }
+    return sm;
+}
+
