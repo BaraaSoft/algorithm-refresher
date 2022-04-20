@@ -364,4 +364,133 @@ const solveDik = ()=>{
 }
 
 
-solveDik()
+const solveAllPaths = () => {
+  const graph = {
+    a: ["b"],
+    b: ["d", "c"],
+    c: ["d"],
+  };
+  let destination = "d";
+  let res = [];
+
+  const dfs = (node, dist, path = []) => {
+    if (node == dist) {
+      res.push([...path]);
+      return true;
+    }
+    if (!graph[node]) return false;
+    for (let n of graph[node]) {
+      path.push(n);
+      dfs(n, dist, path);
+      path.pop();
+    }
+  };
+
+  dfs("a", destination);
+  console.log(res);
+};
+
+class DisjointSet {
+  constructor(size) {
+    this.arr = Array(size);
+    for (let i = 0; i <= size; i++) {
+      this.arr[i] = i;
+    }
+  }
+
+  find(x) {
+    return this.arr[x];
+  }
+
+  union(x, y) {
+    let nodeX = this.find(x);
+    let nodeY = this.find(y);
+    if (nodeX != nodeY) {
+      for (let i = 0; i <= this.arr.length; i++) {
+        if (this.arr[i] == nodeY) {
+          this.arr[i] = nodeX;
+        }
+      }
+    }
+  }
+}
+
+const solve1293 = (intervals, newInterval) => {
+  let i = 0,
+    merged = [];
+  while (i < intervals.length && newInterval[0] > intervals[i][1]) {
+    merged.push(intervals[i]);
+    i++;
+  }
+
+  while (i < intervals.length && newInterval[1] > intervals[i][0]) {
+    newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+    newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+    i++;
+  }
+
+  merged.push(newInterval);
+  while (i < intervals.length) {
+    merged.push(intervals[i]);
+    i++;
+  }
+
+  return merged;
+};
+
+// console.log(solve())
+
+function solution(N, K) {
+    // write your code in JavaScript (Node.js 8.9.4)
+
+    
+    let water = K;
+    let cups =0;
+   
+    // water -= N;
+    for(let i=N;i>=1;i--){
+         if(water <=0)break;
+        if(i > water)continue;
+        else {
+             cups++;
+            water -= i
+        }
+    }
+
+    console.log({cups,water})
+    
+}
+
+ // ------------------------------------
+
+
+const solve = (arr)=>{
+    console.log("start")
+    arr.sort((a,b)=>a-b)
+    let res = []
+    for(let i=0;i<arr.length;i++){
+        let num = arr[i];
+        let start = i +1,end= arr.length -1;
+        let target = -num;
+        while(start < end){
+            let sum = arr[start] + arr[end]
+           
+            if(sum == target) {
+
+                res.push([num,arr[start],arr[end]])
+                start++;
+                end--;
+                // while (start <end && arr[start] == arr[start-1]) start++;
+                // while(start <end && arr[end] == arr[end+1]) end--;
+            }else if(sum > target){ end--;}
+            else {start++;}
+        }
+    }
+
+    console.log(res)
+
+    return res
+}
+
+
+solve( [-3, 0, 1, 2, -1, 1, -2])
