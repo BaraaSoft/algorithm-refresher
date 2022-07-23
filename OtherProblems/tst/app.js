@@ -667,4 +667,23 @@ const solveit = (str) => {
   console.log("node>> ", base64data);
 };
 
+<<<<<<< HEAD
 solveit("DEF");
+=======
+/********************/
+/***** Dijkstar *****/
+/********************/
+
+const lowest = (costs,visited)=>{
+    let sm = null;
+    for(let [node,cost] of costs){
+        if(!visited.includes(node)){
+            if(costs[sm] == null || costs[node] < costs[sm]){
+                sm = node
+            }
+        }
+    }
+    return sm;
+}
+
+>>>>>>> 345d50384e0b3dd0f4ecfb4a5a74d8fe3ca7abbe
