@@ -23,3 +23,5 @@ const solveit = (str) => {
 };
 
 solveit("DEF");
+console.log("start: ", String.fromCharCode(parseInt("01100011", 2)));
+console.log("end: ", String.fromCharCode(parseInt("11000110", 2)));
