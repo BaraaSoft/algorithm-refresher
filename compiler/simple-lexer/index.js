@@ -2,7 +2,7 @@ const somecode =
   'foo = 12.33; print(3); print((foo));bar = 128.4 + 428;';
 
 const eval = (str) => {
-  const tokeClass = {
+  const tokenClass = {
     1: 'Symbol',
     0: null,
     2: '=',
@@ -92,13 +92,13 @@ const eval = (str) => {
       const currToken = str.slice(i, i + 1).trim();
       prevToken &&
         tokens.push([
-          tokeClass[currState] ?? currState,
+          tokenClass[currState] ?? currState,
           prevToken,
         ]);
 
       currToken &&
         tokens.push([
-          tokeClass[nextState] ?? char,
+          tokenclass[nextState] ?? char,
           currToken,
         ]);
 
