@@ -81,7 +81,6 @@ const eval = (str) => {
   };
   let tokens = [];
   let currState = 0;
-  let nextState = 0;
   let prev = -1;
   for (let i = 0; i < str.length; i++) {
     let char = str[i];
