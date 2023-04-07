@@ -73,8 +73,10 @@ const eval = (str) => {
       parseInt(state)
     ].find(([regex]) => regex.test(input));
     if (!nextState) {
-      console.log({ state, input });
-      console.error('>> Erorr unidentified state');
+      console.error('>> Erorr unidentified state:', {
+        state,
+        input,
+      });
       return;
     }
     return nextState;
@@ -84,7 +86,6 @@ const eval = (str) => {
   let prev = -1;
   for (let i = 0; i < str.length; i++) {
     let char = str[i];
-    if (/[\s*]/.test(char)) continue;
     if (!char) continue;
     let nextState = getNextState(currState, char, table);
     if ([7, 6, 5, 2].includes(nextState)) {
@@ -98,7 +99,7 @@ const eval = (str) => {
 
       currToken &&
         tokens.push([
-          tokenclass[nextState] ?? char,
+          tokenClass[nextState] ?? char,
           currToken,
         ]);
 
