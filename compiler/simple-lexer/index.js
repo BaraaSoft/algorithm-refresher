@@ -1,5 +1,3 @@
-#!/usr/bin/env ts-node
-
 const somecode =
   'foo = 12.33; print(3); print((foo));bar = 128.4 + 428;';
 
