@@ -1,4 +1,4 @@
-// g++ -o out main.cpp
+// g++ -std=c++11 -o out main.cpp
 
 #include <iostream>
 #include <string>
@@ -6,10 +6,18 @@ using namespace std;
 
 // Valid Palindrome
 
+bool FindSumOfThree(vector<int> nums, int target);
+
 int main(){
     string str = "The is very long string";
 
     cout<<"size of string"<<str.length()<<endl;
+
+    vector<vector<int>>v{{2,1,4,5},{3,1,4,5}};
+    for(vector<int> a:v){
+        bool res = FindSumOfThree(a,12);
+        cout<<"is tripplet: "<<res<<endl;
+    }
     return 0;
 }
 

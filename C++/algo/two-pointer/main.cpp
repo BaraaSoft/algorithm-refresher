@@ -1,4 +1,4 @@
-// g++ -o out main.cpp
+// g++ -std=c++11 -o out main.cpp
 
 #include <iostream>
 #include <string>
