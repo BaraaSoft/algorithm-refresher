@@ -13,11 +13,10 @@ int main(){
     vector<int> arr {2,3,5,6};
     //cout<<">> Found at :: "<<lowerBound(arr,3)<<endl;
 
-    vector<int> nums{3,2,0,1};
+ 
 
-    string str = primeQuestion("cdeo",nums);
-
-    cout<<">> prime Question: "<<str<<endl;
+    cout<<">> prime Question (1): "<<primeQuestion("cdeo",vector<int>{3,2,0,1})<<endl;
+    cout<<">> prime Question (2): "<<primeQuestion("cdeenetpi",vector<int>{5,2,0,1,6,4,8,3,7})<<endl;
     return 0;
 }
 
