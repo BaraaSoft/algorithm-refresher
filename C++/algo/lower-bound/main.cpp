@@ -63,19 +63,14 @@ int binararySearch(vector<int>arr, int val){
 std::string primeQuestion(std::string str,vector<int> arrA){
     // str = cdeo, arrA = {3,2,0,1}; //res = code 
     int startIndex = std::find(arrA.begin(),arrA.end(),0) -  arrA.begin();
-   
 
-
-    std::string result = " ";
+    std::string result = "";
     result += str.at(0);
     startIndex = arrA[startIndex];
     while(arrA[startIndex] != 0){
         int pos = arrA[startIndex];
-         cout<<str.at(pos)<<endl;
         result += str.at(pos);
         startIndex = pos;
-
-      
     }
     return result;
 }
