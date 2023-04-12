@@ -1,0 +1,85 @@
+#include<iostream>
+#include<vector>
+#include<string>
+
+using namespace std;
+
+// g++ -std=c++11 -o out main.cpp
+
+int lowerBound(vector<int> arr,int val);
+int binaraySearch(vector<int> arr,int val);
+std::string primeQuestion(std::string str,vector<int> arrA);
+int main(){
+    vector<int> arr {2,3,5,6};
+    //cout<<">> Found at :: "<<lowerBound(arr,3)<<endl;
+
+    vector<int> nums{3,2,0,1};
+
+    string str = primeQuestion("cdeo",nums);
+
+    cout<<">> prime Question: "<<str<<endl;
+    return 0;
+}
+
+int lowerBound(vector<int> arr, int val){
+
+    int start = 0;
+    int end = arr.size();
+
+    while(start< end){
+        int mid = (end - start)/2;
+        if(val > arr.at(mid)){
+            start = mid;
+        }else{
+            end = mid-1;
+        }
+    }
+
+    return start;
+    
+}
+
+int binararySearch(vector<int>arr, int val){
+    int start = 0;
+    int end = arr.size();
+    
+    while (start < end)
+    {
+        int mid = (end - start)/2;
+        if(arr.at(mid) == val){
+            return mid;
+        }else if(arr.at(mid)< val){
+            end = mid -1;
+        }else{
+            start = mid;
+        }
+
+    }
+    
+    return -1;
+}
+
+
+std::string primeQuestion(std::string str,vector<int> arrA){
+    // str = cdeo, arrA = {3,2,0,1}; //res = code 
+    int startIndex = 0;
+    for (int i = 0; i < arrA.size(); i++)
+    {
+        if(arrA[i] == 0) startIndex = i;
+    }
+
+    int index=0;
+
+    std::string result = " ";
+    result += str.at(0);
+    startIndex = arrA[startIndex];
+    while(arrA[startIndex] != 0){
+        int pos = arrA[startIndex];
+         cout<<str.at(pos)<<endl;
+        result += str.at(pos);
+        startIndex = pos;
+
+      
+    }
+    return result;
+}
