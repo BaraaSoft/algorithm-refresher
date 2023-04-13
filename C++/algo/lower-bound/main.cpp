@@ -10,8 +10,8 @@ int lowerBound(vector<int> arr,int val);
 int binaraySearch(vector<int> arr,int val);
 std::string primeQuestion(std::string str,vector<int> arrA);
 int main(){
-    vector<int> arr {2,3,5,6};
-    //cout<<">> Found at :: "<<lowerBound(arr,3)<<endl;
+    vector<int> arr {2,4,7,9};
+    cout<<">> Found at :: "<<lowerBound(arr,3)<<endl;
 
  
 
@@ -19,23 +19,21 @@ int main(){
     cout<<">> prime Question (2): "<<primeQuestion("cdeenetpi",vector<int>{5,2,0,1,6,4,8,3,7})<<endl;
     return 0;
 }
-
+/*** robose - using binary search to find lower bound ***/
 int lowerBound(vector<int> arr, int val){
-
     int start = 0;
     int end = arr.size();
-
-    while(start< end){
-        int mid = (end - start)/2;
-        if(val > arr.at(mid)){
-            start = mid;
+    int ans = -1;
+    while(start< end ){
+        int mid = (end + start)/2;
+        if(arr.at(mid)<=val){
+             ans = mid;
+            start = mid+1;
         }else{
             end = mid-1;
         }
     }
-
     return start;
-    
 }
 
 int binararySearch(vector<int>arr, int val){
