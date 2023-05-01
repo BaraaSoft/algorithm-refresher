@@ -1,5 +1,5 @@
 // g++ -std=c++11 -o out main.cpp
-
+// https://www.youtube.com/watch?v=TCHSXAu5pls
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,8 +9,8 @@ using namespace std;
 vector<int> maximumSlidingWindow(vector<int> arr,int k);
 void printAll(vector<int> arr);
 void slideWindow(vector<int> &arr, vector<int> &window,int i);
-// https://www.youtube.com/watch?v=TCHSXAu5pls
-// https://www.educative.io/courses/grokking-coding-interview-patterns-cpp/YQVXzAAXmjA#Just-the-code
+
+
 int main(){
     vector<int> list{1,2,3,4,5,6,7,8,9,10};
     vector<int> list2{6,1,5,3,9};
