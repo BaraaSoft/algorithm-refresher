@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include<map>
 
 using namespace std;
 
@@ -20,6 +21,16 @@ int main(){
     vector<int> resArr2 = maximumSlidingWindow(list2,3);
     printAll(resArr);
     printAll(resArr2);
+
+    map<string,int>mp{{"baraa",1992},{"Mirghani",1955}};
+    if(mp.find("baraas") != mp.end()){
+        cout<<"Found: "<<mp["baraa"]<<endl;
+    }else{cout<<"Not Found!"<<endl;}
+    for(auto &itr:mp){
+        cout<<itr.first<<endl;
+    }
+
+
     return 0;
 }
 
