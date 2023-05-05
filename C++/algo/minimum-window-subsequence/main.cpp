@@ -13,7 +13,7 @@ bool match(map<char,int> &mapStr2,string str);
 
 
 int main(){
-
+    
     //string res1 = minimumWindowSubsequence("abcdebdde","bde");
     string res2= minimumWindowSubsequence("fgrqsqsnodwmxzkzxwqegkndaa" , "kzed"); //"kzxwqegknd"
      //string res3= minimumWindowSubsequence("afgegrwgwga" , "aa");
