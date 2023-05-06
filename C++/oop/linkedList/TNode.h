@@ -1,7 +1,6 @@
 #ifndef TNODE_H_
 #define TNODE_H_
 
-
 #include<iostream>
 
 class TNode
@@ -15,6 +14,9 @@ public:
     void setNext(TNode *node);
     TNode* getNext();
     void printAll(TNode *root);
+    TNode():value{INT_MIN},next{nullptr}{};
+    TNode(int val):value{val},next{nullptr}{};
+    ~TNode(){delete this->next;};
 };
 
 #endif
