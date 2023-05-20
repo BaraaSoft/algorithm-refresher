@@ -17,7 +17,6 @@ public:
     unique_ptr<HotDrinks> make() const override {
         return make_unique<Tea>();
     }  
-    virtual ~TeaFactory(){};
 };
 
 class CoffeeFactory: HotDrinksFactory{
@@ -25,7 +24,7 @@ public:
     unique_ptr<HotDrinks> make() const override{
         return make_unique<Coffee>();
     }
-}
+};
 
 
 
