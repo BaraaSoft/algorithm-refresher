@@ -3,6 +3,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<functional>
 
 using namespace std;
 
@@ -48,9 +49,8 @@ vector<Interval> IntervalsIntersection(vector<Interval> intervalListA, std::vect
     vector<Interval> result;
     int l=0,r=0;
 
-    sort(intervalListA.begin(),intervalListA.end(),compare);
+    sort(intervalListA.begin(),intervalListA.end(),[](Interval a,Interval b){return a.start<b.start;});
     sort(intervalListB.begin(),intervalListB.end(),compare);
-
 
     while(l < intervalListA.size() && r <intervalListB.size()){
         Interval a = intervalListA[l];
