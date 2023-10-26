@@ -65,8 +65,12 @@
     "chrono": "cpp",
     "compare": "cpp",
     "concepts": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "__tree": "cpp",
+    "map": "cpp",
+    "set": "cpp"
   },
   "C_Cpp.default.cppStandard": "c++20",
-  "cmake.cpptools.intelliSenseMode": "clang-x64"
+  "cmake.cpptools.intelliSenseMode": "clang-x64",
+  "C_Cpp.default.configurationProvider": "go2sh.cmake-integration"
 }

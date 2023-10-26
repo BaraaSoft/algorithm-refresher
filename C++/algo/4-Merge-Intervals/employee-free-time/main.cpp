@@ -33,6 +33,7 @@ public:
 
 
 vector<Interval> employeeFreeTime (vector<vector<Interval>>&schedule);
+void print(vector<Interval> intervals);
 
 
 
@@ -49,5 +50,17 @@ int main(){
 
 vector<Interval> employeeFreeTime (vector<vector<Interval>>&schedule){
     priority_queue<tuple<int,int,int>,vector<tuple<int,int,int>>,MinHeap> heap;
+
+    
     return {};
+}
+
+
+void print(vector<Interval> intervals){
+    for(auto &itr:intervals){
+        cout<< "("
+        <<itr.start<<","<<itr.end
+        <<")"<<" "
+        <<endl;
+    }
 }

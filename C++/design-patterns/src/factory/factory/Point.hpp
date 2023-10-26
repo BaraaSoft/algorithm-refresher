@@ -1,7 +1,6 @@
 #ifndef POINT_H_ 
 #define POINT_H_ POINT_H_
 #include<cmath>
-
 using namespace std;
 class Point
 {
@@ -24,6 +23,5 @@ struct PointFactory
         return {a * sin(theta),a * cos(theta)};
     }
 };
-
 
 #endif

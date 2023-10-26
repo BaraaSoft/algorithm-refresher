@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 cd build
-cmake ..
+cmake ../CMakeLists.txt
 make
 cd ..
+
+# new project  cmake ../CMakeLists.txt
