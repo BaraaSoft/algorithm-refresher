@@ -2,26 +2,49 @@
 #include<string>
 #include<iostream>
 #include<vector>
-
+#include<utility>
 using namespace std;
-// g++ -std=c++11 -o out main.cpps
+// g++ -std=c++11 -o out main.cpp
 
-
+vector<pair<int,int>> merge(vector<pair<int,int>> inputArr);
+void printAll(vector<pair<int,int>> &arr);
 
 int main(){
 
-    cout<<"working ...."<<endl;
+    vector<pair<int,int>> arr{{1,4},{3,6},{7,9}};
+    auto res = merge(arr);
+    printAll(res);
+}
 
-    string text= "Baraa Mirghani Mohamed";
+vector<pair<int,int>> merge(vector<pair<int,int>> inputArr){
 
-   vector<string> arr = {"Baraa","Mirghani"};
+    vector<pair<int,int>> arr{};
 
-   for(int i=0;i<arr.size(); i++){
-       cout<<arr.at(i)<<endl;
-   }
+    auto prev= inputArr[0];
 
-   
-    cout<<text<<endl;
+    for(int i =1;i<inputArr.size();i++){
+        auto curr = inputArr.at(i);
+        if(curr.first <= prev.second){
+           prev.second = max(prev.second,curr.second);
+        }else{
+            arr.push_back({prev.first,prev.second});
+            prev.first =curr.first;
+            prev.second = curr.second;
+        }
+    }
+
+    arr.push_back({prev.first,prev.second});
+
+ 
+    return arr;
+    
+}
+
+
+void printAll(vector<pair<int,int>> &arr){
+    for(auto elm: arr){
+        cout<<"["<<elm.first<<","<<elm.second<<"]"<<endl;
+    }
 }
 
 
