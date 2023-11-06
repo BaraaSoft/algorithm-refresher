@@ -13,36 +13,36 @@ class Heap {
     return this.arr.length;
   }
 
-  maxHeap(arr, i) {
-    let largest = i;
+  minHeap(arr, i) {
+    let smallest = i;
     let left = 2 * i + 1;
     let right = 2 * i + 2;
     if (
       left < arr.length &&
-      this.selector(arr[left]) > this.selector(arr[i])
+      this.selector(arr[left]) < this.selector(arr[i])
     ) {
-      largest = left;
+      smallest = left;
     }
 
     if (
       right < arr.length &&
-      this.selector(arr[right]) >
-        this.selector(arr[largest])
+      this.selector(arr[right]) <
+        this.selector(arr[smallest])
     ) {
-      largest = right;
+      smallest = right;
     }
 
-    if (largest != i) {
+    if (smallest != i) {
       let temp = arr[i];
-      arr[i] = arr[largest];
-      arr[largest] = temp;
-      this.maxHeap.call(this, arr, largest);
+      arr[i] = arr[smallest];
+      arr[smallest] = temp;
+      this.minHeap.call(this, arr, smallest);
     }
   }
 
   buid() {
     for (let i = this.arr.length - 1; i >= 0; i--) {
-      this.maxHeap.call(this, this.arr, i);
+      this.minHeap.call(this, this.arr, i);
     }
   }
 
