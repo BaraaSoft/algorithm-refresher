@@ -73,5 +73,7 @@
   "C_Cpp.default.cppStandard": "c++20",
   "cmake.cpptools.intelliSenseMode": "clang-x64",
   "C_Cpp.default.configurationProvider": "go2sh.cmake-integration",
-  "prettier.configPath": "./.prettierrc"
+  "prettier.configPath": "./.prettierrc",
+  "github.copilot.advanced": {},
+  "github.copilot.editor.enableAutoCompletions": false
 }
