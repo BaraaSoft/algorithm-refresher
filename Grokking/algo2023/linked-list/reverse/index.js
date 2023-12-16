@@ -31,7 +31,6 @@ const reverse = (linkedList) => {
   let head = mid.next;
 
   let curr = linkedList;
-
   while (curr) {
     // (tail = curr) <- mid <- head
     curr.next = tail;
