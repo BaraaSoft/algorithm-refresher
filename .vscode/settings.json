@@ -75,5 +75,6 @@
   "C_Cpp.default.configurationProvider": "go2sh.cmake-integration",
   "prettier.configPath": "./.prettierrc",
   "github.copilot.advanced": {},
-  "github.copilot.editor.enableAutoCompletions": false
+  "github.copilot.editor.enableAutoCompletions": false,
+  "editor.fontSize": 13
 }
