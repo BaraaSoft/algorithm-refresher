@@ -1,36 +1,38 @@
+function Node(val, next) {
+  this.val = val;
+  this.next = next;
+}
+
 function Queue() {
-  this.size = 0;
-  this.top = null;
+  this.left = null;
+  this.right = null;
+  this.count = 0;
 }
 
-function Node(data) {
-  this.value = data;
-  this.next = null;
-}
-
-Queue.prototype.enqueue = function (data) {
-  const newNode = new Node(data);
-  let curr = this.top;
-
-  if (!curr) {
-    this.top = newNode;
-  } else {
-    while (curr.next) {
-      curr = curr.next;
-    }
-    curr.next = newNode;
+Queue.prototype.enqueue = function (value) {
+  this.count++;
+  if (!this.left && !this.right) {
+    this.left = this.right = new Node(value, null);
+    return value;
   }
 
-  this.size++;
+  let newNode = new Node(value);
+
+  this.right.next = newNode;
+  this.right = newNode;
+  return value;
 };
 
 Queue.prototype.dequeue = function () {
-  if (this.size == 0) return null;
-  const prevTopNode = this.top;
-  this.top = this.top.next;
-  this.size--;
-
-  return prevTopNode.value;
+  this.count--;
+  if (!this.left) {
+    this.count = 0;
+    this.left = this.right = null;
+    return null;
+  }
+  let value = this.left.val;
+  this.left = this.left.next;
+  return value;
 };
 
 const myQueue = new Queue();
@@ -38,9 +40,8 @@ myQueue.enqueue('Baraa');
 myQueue.enqueue('Mirghani');
 myQueue.enqueue('Mohamed');
 myQueue.enqueue('Abuzaid');
-console.log({ queueSize: myQueue.size });
-
-while (myQueue.size > 0) {
+console.log({ queueSize: myQueue.count });
+while (myQueue.count > 0) {
   console.log(myQueue.dequeue());
 }
 
@@ -48,9 +49,19 @@ myQueue.enqueue('Baraa');
 myQueue.enqueue('Mirghani');
 myQueue.enqueue('Mohamed');
 myQueue.enqueue('Abuzaid');
-console.log({ queueSize: myQueue.size });
+console.log({ queueSize: myQueue.count });
 while (myQueue.size > 0) {
   console.log(myQueue.dequeue());
 }
-myQueue.dequeue();
-console.log({ queueSize: myQueue.size });
+console.log('>> last', myQueue.dequeue());
+console.log({ queueSize: myQueue.count });
+
+// last check point
+
+myQueue.enqueue('Baraa');
+myQueue.enqueue('Mirghani');
+console.log({ top1: myQueue.dequeue() });
+console.log({
+  top2: myQueue.dequeue(),
+  size: myQueue.count,
+});
