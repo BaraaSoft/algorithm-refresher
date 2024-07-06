@@ -76,5 +76,5 @@
   "prettier.configPath": "./.prettierrc",
   "github.copilot.advanced": {},
   "github.copilot.editor.enableAutoCompletions": false,
-  "editor.fontSize": 13
+  "editor.fontSize": 13.5
 }

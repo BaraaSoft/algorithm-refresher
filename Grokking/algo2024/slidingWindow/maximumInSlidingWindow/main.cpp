@@ -24,22 +24,25 @@ int main(){
 
 
 vector<int> findMaxSlidingWindow(vector<int>&arr,int k){
+    vector<int> res{};
+    deque<int> que;
+    int l=0;
+    for(int i=0;i<arr.size();i++){
+        int num = arr[i];
+        while(!que.empty() && num > arr[que.back()]){
+            que.pop_back();
+        }
+        que.push_back(i);
 
-    int maxEncounter = 0;
-    vector<int> output{};
-    int start =-10e4;
-    priority_queue<int,vector<int>> maxHeap;
 
-    for(int i =0;i<arr.size(); i++){
-        maxHeap.push(arr.at(i));
+        if(que.front() < l){que.pop_front();}
+
         if(i >= k-1){
-            int max = maxHeap.top();
-            maxHeap.pop();
-            output.push_back(max);
-        };
+            res.push_back(arr[que.front()]);
+            l++;
+        }
+
     }
-    return output;
+    return res;
 }
-
-
 
