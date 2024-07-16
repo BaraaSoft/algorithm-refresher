@@ -9,7 +9,6 @@
 using namespace std;
 // g++ -std=c++11 -o out main.cpp
 
-
 string minWindow(string s, string t);
 
 int main(){
@@ -32,8 +31,8 @@ string minWindow(string s, string t){
     map<char,int> charFreqT{};
     map<char,int> window{};
     for(auto ch= t.begin(); ch != t.end();ch++ ){
-        if(charFreqT.find(*ch)== charFreqT.end()){
-            charFreqT[*ch] =0;
+        if(charFreqT.find(*ch) == charFreqT.end()){
+            charFreqT[*ch]=0;
             window[*ch]=0;
         }else{
             charFreqT[*ch] += 1;
@@ -70,7 +69,7 @@ string minWindow(string s, string t){
           
             if(charFreqT.find(lchar)!= charFreqT.end()){
                 window[lchar] -=1;
-                if(window[lchar] < 2){
+                if(window[lchar] < 1){
                     window[lchar]=0;
                     currMatchSize--;
                 }
@@ -81,6 +80,5 @@ string minWindow(string s, string t){
         }
         
     }
-
     return minStr;
 }
