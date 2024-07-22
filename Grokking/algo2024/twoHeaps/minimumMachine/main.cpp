@@ -37,36 +37,28 @@ struct pairGreaterSecond{
 int tasksFun(vector<vector<int>> tasksList)
 {
 
-    priority_queue<pair<int,int>, vector<pair<int,int>>,pairGreaterSecond> minHeap;
+    priority_queue<pair<int,int>, vector<pair<int,int>>,greater<pair<int,int>>> minHeap;
+    priority_queue<int,vector<int>,greater<int>> availableMachines{};
 
     for(auto item:tasksList){
         minHeap.push(make_pair(item[0],item[1]));
     }
-
-    pair<int,int> item = minHeap.top();
+     
+    int endTime = minHeap.top().second;
+    availableMachines.push(endTime);
     minHeap.pop();
 
-
-    int start= item.first;
-    int end = item.second;
-
-    int machineCount=1;
-
     while(!minHeap.empty()){
-        pair<int,int> curr = minHeap.top();
+        pair<int,int> nextTask = minHeap.top();
+        int activeTask = availableMachines.top(); 
 
-        if(curr.first < end){
-            machineCount++;
-        }else{}
-
-        start = std::max(curr.first,start);
-        end = std::max(curr.second,end);
-
+        if(nextTask.first < activeTask){
+            availableMachines.push(nextTask.second);
+        }else{
+            availableMachines.pop();
+            availableMachines.push(nextTask.second);
+        }
         minHeap.pop();
-
     }
-
-
-
-    return machineCount;
+    return availableMachines.size();
 }
