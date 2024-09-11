@@ -1,5 +1,5 @@
 // Q) https://leetcode.com/problems/time-based-key-value-store/
-
+// upper bound binary search
 var TimeMap = function () {
   this.store = new Map();
 };
