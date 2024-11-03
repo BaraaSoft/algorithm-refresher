@@ -1,5 +1,6 @@
 #ifndef CONTACT_H_
 #define CONTACT_H_
+#include <string>
 using namespace std;
 
 
