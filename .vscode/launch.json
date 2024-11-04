@@ -5,6 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.baraabytes.designpattern.builderPattern.Main",
+      "projectName": "design-pattern"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.baraabytes.basics.Main",
+      "projectName": "design-pattern"
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "Node",
