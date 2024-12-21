@@ -1,20 +1,34 @@
-package com.baraabytes.mobileappws.ui.Dto.shared;
+package com.baraabytes.mobileappws.entity;
+
+import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.UUID;
 
-public class UserDto implements Serializable {
+@Entity(name = "users")
+public class UserEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+    @Column(nullable = false,length = 64)
     private String firstName;
+    @Column(nullable = false,length = 64)
     private String lastName;
+    @Column(nullable = false,length = 264,unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String encryptedPassword;
     private String emailVerificationToken;
-    private boolean emailVerificationStatus = false;
 
+    @Column(nullable = false,columnDefinition = "boolean default false" )
+    private Boolean emailVerificationStatus = false;
 
     public String getId() {
         return id;
@@ -72,11 +86,11 @@ public class UserDto implements Serializable {
         this.emailVerificationToken = emailVerificationToken;
     }
 
-    public boolean getEmailVerificationStatus() {
+    public Boolean getEmailVerificationStatus() {
         return emailVerificationStatus;
     }
 
-    public void setEmailVerificationStatus(boolean emailVerificationStatus) {
+    public void setEmailVerificationStatus(Boolean emailVerificationStatus) {
         this.emailVerificationStatus = emailVerificationStatus;
     }
 }

@@ -6,8 +6,6 @@ public class UserResponseDto {
     private String lastName;
     private String email;
 
-    public UserResponseDto(String id, String firstName, String lastName, String email) {}
-
     public String getLastName() {
         return lastName;
     }
