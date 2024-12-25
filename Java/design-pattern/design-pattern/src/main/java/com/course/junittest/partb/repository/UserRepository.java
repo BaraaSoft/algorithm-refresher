@@ -19,7 +19,10 @@ public class UserRepository implements Repository<User> {
     }
 
     @Override
-    public User save(User user) {
+    public User save(User user) throws IllegalArgumentException  {
+        if(user.getName() == null || user.getName().isEmpty()) throw new IllegalArgumentException("Username cannot be empty");
+        if(user.getEmail() == null || user.getEmail().isEmpty()) throw new IllegalArgumentException("Email cannot be empty");
+
         user.setId(UUID.randomUUID().toString());
         if(users.containsKey(user.getId())) { return users.get(user.getId()); }
         users.put(user.getId(), user);
@@ -27,9 +30,13 @@ public class UserRepository implements Repository<User> {
     }
 
     @Override
-    public User update(String id, User newModel) {
+    public User update(String id, User newModel) throws IllegalArgumentException {
+        if(id == null || id.isEmpty()) throw new IllegalArgumentException("Id cannot be empty");
+        if(newModel.getName() == null || newModel.getName().isEmpty()) throw new IllegalArgumentException("Username cannot be empty");
+
         User oldModel = users.get(id);
         if(oldModel == null) { return null; }
+
         newModel.setId(oldModel.getId());
         users.put(id, newModel);
         return newModel;

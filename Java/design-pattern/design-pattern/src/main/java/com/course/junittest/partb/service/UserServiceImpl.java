@@ -1,27 +1,47 @@
 package com.course.junittest.partb.service;
 
 import com.course.junittest.partb.model.User;
+import com.course.junittest.partb.repository.Repository;
 import com.course.junittest.partb.repository.UserRepository;
 
 public class UserServiceImpl implements UserService<User> {
-    private final UserRepository userRepository;
-    public UserServiceImpl(UserRepository userRepository) {
+    private final Repository<User> userRepository;
+    private final EmailService<User> emailService;
+    public UserServiceImpl(Repository<User> userRepository, EmailService<User> emailService) {
         this.userRepository = userRepository;
+        this.emailService = emailService;
     }
 
     @Override
-    public User findByUserId(String id) {
-        return userRepository.find(id);
+    public User findByUserId(String id) throws UserServiceException {
+        User user = userRepository.find(id);
+        if (user == null) throw new UserServiceException("user not found!");
+        return user;
     }
 
     @Override
     public User updateUser(String id, User user) {
-        return userRepository.update(id, user);
+        User newUser;
+
+        try {
+            newUser = userRepository.update(id, user);
+        } catch (RuntimeException e) {
+            throw new UserServiceException("Failed update user details!");
+        }
+
+        return newUser;
     }
 
     @Override
-    public User addUser(User user) {
-        return userRepository.save(user);
+    public User addUser(User user) throws UserServiceException {
+        User createdUser = userRepository.save(user);
+        if(createdUser == null) throw new UserServiceException("couldn't create user!");
+        try {
+            emailService.sendConfirmationEmail(user,"Welcome to future land!");
+        }catch (RuntimeException e) {
+            throw new UserServiceException(e.getMessage());
+        }
+        return createdUser;
     }
 
     @Override
