@@ -9,8 +9,8 @@ public class ThreeSumLeetco {
     public List<List<Integer>> threeSum(int[] nums) {
 
         Arrays.sort(nums);
-        List<List<Integer>> res = new ArrayList();
-        HashSet<String> seen = new HashSet();
+        List<List<Integer>> res = new ArrayList<>();
+        HashSet<String> seen = new HashSet<>();
 
 
         for(int i=0;i<nums.length-2;i++){
