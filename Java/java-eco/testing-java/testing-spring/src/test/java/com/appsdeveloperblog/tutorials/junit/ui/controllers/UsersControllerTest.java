@@ -21,7 +21,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -71,7 +72,5 @@ public class UsersControllerTest {
         assertEquals(userDetailsRequestModel.getFirstName(),userResponse.getFirstName());
         assertEquals(userDetailsRequestModel.getEmail(),userResponse.getEmail(),"The return email is incorrect");
         assertFalse(userResponse.getUserId().isEmpty(),"userId should not be empty");
-
-
     }
 }
