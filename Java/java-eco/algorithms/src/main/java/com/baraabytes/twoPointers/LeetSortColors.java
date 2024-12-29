@@ -1,6 +1,6 @@
 package com.baraabytes.twoPointers;
 
-final public class XSortColors {
+final public class LeetSortColors {
 
     public void sortColors(int[] nums) {
         int start =0,end=nums.length-1;

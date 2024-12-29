@@ -22,6 +22,10 @@ public class Main {
         /*
             Sorting arrays:
 
+
+            Collections.sort(list, Collections.reverseOrder());
+            Arrays.sort(array, Collections.reverseOrder());
+
             int[] a2 = IntStream.of(a).sorted().toArray();
             int[] a2 = a.clone();
             Arrays.sort(a2);
@@ -35,6 +39,14 @@ public class Main {
             ---
             String[] array = new String[] {"John", "Mary", "Bob"};
             Arrays.toString(array)
+
+
+            String join:
+            String[] array = new String[] { "a", "b", "c" };
+            String joined2 = String.join(",", array);
+
+            List<String> list = Arrays.asList(array);
+            String joined3 = String.join(",", list);
 
 
          */
