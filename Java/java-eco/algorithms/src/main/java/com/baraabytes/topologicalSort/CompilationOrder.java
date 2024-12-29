@@ -4,13 +4,7 @@ import java.util.*;
 
 public class CompilationOrder {
 
-    enum Colors{
-        WHITE,
-        GREY,
-        BLACK
-    }
 
-    private boolean hasCycle = false;
 
     public static void main(String[] args){
 
@@ -32,6 +26,14 @@ public class CompilationOrder {
                 .forEach(System.out::println);
     }
 
+
+    enum Colors{
+        WHITE,
+        GREY,
+        BLACK
+    }
+
+    private boolean hasCycle = false;
 
     public List<Character> findCompilationOrder(ArrayList<ArrayList<Character>> dependencies) {
         Map<Character,Colors> colorsMap = new HashMap<>();
