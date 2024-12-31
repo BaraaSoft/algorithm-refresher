@@ -4,47 +4,57 @@ public class ValidWordAbbreviation {
     public static void main(String[] args){
 
         ValidWordAbbreviation validWordAbbreviation= new ValidWordAbbreviation();
-//        System.out.println(validWordAbbreviation.validWordAbbreviation(
-//                "innovation","in5ion"
-//        ));
-//        System.out.println(validWordAbbreviation.validWordAbbreviation(
-//                "obedience","obe3nce"
-//        ));
-//        System.out.println(validWordAbbreviation.validWordAbbreviation(
-//                "mindset","min3set"
-//        ));
+        System.out.println(validWordAbbreviation.verify(
+                "innovation","in5ion"
+        ));
+        System.out.println(validWordAbbreviation.verify(
+                "obedience","obe3nce"
+        ));
 
-        System.out.println(validWordAbbreviation.validWordAbbreviation(
+
+        System.out.println(validWordAbbreviation.verify(
                 "internationalization","13iz4n"
+        ));
+
+
+        System.out.println(validWordAbbreviation.verify(
+                "mindset","min3set"
+        ));
+
+        System.out.println(validWordAbbreviation.verify(
+                "bcnwrhcp","08drbff0"
         ));
 
     }
 
-    public boolean validWordAbbreviation(String word,String abbr){
 
-        for (int i = 0; i < abbr.length(); i++) {
-            int right=i;
-            while (isNumber(String.valueOf(abbr.charAt(right)))){
-                right++;
+    public boolean verify(String word,String abbr){
+        int wordIndex =0, abbrIndex =0;
+
+        while(wordIndex < word.length()  && abbrIndex < abbr.length()){
+            char wordChar = word.charAt(wordIndex);
+            char abbrChar = abbr.charAt(abbrIndex);
+            boolean hasNum = false;
+            int prevAbbrIndex = abbrIndex;
+
+            if(abbrChar == '0') return false;
+            if(!isNumber(Character.toString(abbrChar)) && wordChar != abbrChar ) return  false;
+
+            while ( abbrIndex < abbr.length() && Character.isDigit(abbr.charAt(abbrIndex)) ){
+                abbrIndex++;
+                hasNum = true;
             }
-           if(isNumber(abbr.substring(i,right) )){
-               Integer num = Integer.parseInt(abbr.substring(i,right));
 
-
-               String abbrLeftSubstr = abbr.substring(0,i);
-               String abbrRightSubstr = abbr.substring(right);
-
-               String wordLeftSubstr = word.substring(0,i);
-               String wordRightSubstr = word.substring(right+num-1);
-
-               if(abbrLeftSubstr.length() + abbrRightSubstr.length()+ num != word.length()) return false;
-
-               return abbrLeftSubstr.equals(wordLeftSubstr) && abbrRightSubstr.equals(wordRightSubstr);
-
-
-           }
+            if(hasNum){
+                int num = Integer.parseInt(abbr.substring(prevAbbrIndex,abbrIndex));
+                wordIndex += num;
+            }else{
+                wordIndex++;
+                abbrIndex++;
+            }
         }
-        return  true;
+
+        return  wordIndex == word.length() &&  abbrIndex == abbr.length();
     }
 
 
