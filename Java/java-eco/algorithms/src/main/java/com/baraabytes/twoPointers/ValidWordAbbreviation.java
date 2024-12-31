@@ -38,7 +38,7 @@ public class ValidWordAbbreviation {
             int prevAbbrIndex = abbrIndex;
 
             if(abbrChar == '0') return false;
-            if(!isNumber(Character.toString(abbrChar)) && wordChar != abbrChar ) return  false;
+            if(!Character.isDigit(abbr.charAt(abbrIndex) ) && wordChar != abbrChar ) return  false;
 
             while ( abbrIndex < abbr.length() && Character.isDigit(abbr.charAt(abbrIndex)) ){
                 abbrIndex++;
