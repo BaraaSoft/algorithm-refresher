@@ -1,39 +1,24 @@
 package com.baraabytes.topologicalSort;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AlienDictionaryVerify {
 
+    public static void  streamGrouping (String[] words){
+                Map<Character, Set<Character>> graph = Stream.of(words)
+                .flatMap(x-> x.chars().mapToObj(c-> Character.valueOf((char)c)) )
+                .peek(System.out::println)
+                .collect(Collectors.groupingBy(Character::charValue, Collectors.mapping(Character::charValue, Collectors.toSet())));
+        System.out.println(graph);
+    }
+
     public static void main(String[] args){
+
+
     }
 
-    enum Colors{
-        WHITE,
-        GREY,
-        BLACK
-    }
-
-    boolean hasCycle = false;
-
-    public String find(List<Character> chars){
-
-
-        return "";
-    }
-    private void dfs(Map<Character, List<Character>> graph, Map<Character,Colors> colorsMap, List<Character> results,Character node ){
-        if(hasCycle) return;
-        colorsMap.put(node,Colors.GREY);
-
-        for(var neighbour:graph.getOrDefault( node, new ArrayList<>())){
-            if(colorsMap.get(neighbour) == Colors.WHITE) this.dfs(graph,colorsMap,results,neighbour);
-            else if (colorsMap.get(neighbour) == Colors.GREY ) this.hasCycle = true;
-        }
-
-        colorsMap.put(node,Colors.BLACK);
-        results.add(node);
-    }
 
 
 }

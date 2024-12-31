@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 public class AlienDictionary {
 
     public static void main(String[] args) {
-
         AlienDictionary letterOrder = new AlienDictionary();
 
         System.out.println(letterOrder.order(Arrays.asList(
@@ -15,6 +14,12 @@ public class AlienDictionary {
                 "er",
                 "ett",
                 "rftt"
+        )));
+        System.out.println(letterOrder.order(Arrays.asList(
+                "baraa",
+                "baraaa",
+                "aa",
+                "mirghani"
         )));
 
     }

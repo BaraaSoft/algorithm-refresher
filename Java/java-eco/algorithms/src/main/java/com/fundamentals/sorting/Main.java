@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +19,17 @@ public class Main {
 
         Employee[] employeeArray = {e1, e2, e3, e4};
         Arrays.stream(employeeArray).sorted(Comparator.comparing(Employee::name).reversed()).forEach(System.out::println);
+
+
+        String str = "sss";
+        char[] arr = str.toCharArray();
+
+        System.out.println(String.valueOf(arr));
+
+        int[] nums = new int[]{1,3,5,7};
+        List<Integer> listNum = Arrays.stream(nums).boxed().toList();
+        int[] convertBack = listNum.stream().mapToInt(x->(int)x).toArray();
+
 
 
         /*
