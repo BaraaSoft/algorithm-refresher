@@ -1,8 +1,11 @@
 package com.baraabytes.twoPointers;
 
+import java.util.Arrays;
+
 public class ValidWordAbbreviation {
     public static void main(String[] args){
-
+        int[] weights = new int[]{1,2,3,4,5,6,7,8,9,10};
+        Arrays.stream(weights).sum();
         ValidWordAbbreviation validWordAbbreviation= new ValidWordAbbreviation();
         System.out.println(validWordAbbreviation.verify(
                 "innovation","in5ion"
