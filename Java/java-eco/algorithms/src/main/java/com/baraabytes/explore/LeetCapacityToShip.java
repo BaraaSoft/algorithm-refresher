@@ -43,12 +43,6 @@ public class LeetCapacityToShip {
             if(numOfDays <= days) r = mid;
             else l = mid+1;
         }
-
-
         return l;
-
     }
-
-
-
 }
