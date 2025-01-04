@@ -48,7 +48,7 @@ public class Mover {
 
 
 
-    public static void setInterval(Runnable callback, int interval){
+    public static Timer setInterval(Runnable callback, int interval){
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -56,6 +56,8 @@ public class Mover {
                 callback.run();
             }
         }, 0, interval);
+
+        return timer;
     }
 
 
