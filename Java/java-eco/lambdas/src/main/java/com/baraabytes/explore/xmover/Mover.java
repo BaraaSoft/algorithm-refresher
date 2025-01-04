@@ -27,7 +27,7 @@ public class Mover {
         try {
             this.robot = new Robot();
         }catch (AWTException e){
-            System.out.println(">> Failed initializing AWT Robot()!");
+            System.out.println(">> Failed initializing AWT!");
             System.out.println(e);
         }
 
