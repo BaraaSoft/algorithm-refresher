@@ -85,7 +85,6 @@ public class NetworkDelay {
         }
 
         int result = Arrays.stream(timeArr).skip(1).max(Comparator.naturalOrder()).get();
-
         return  result == Integer.MAX_VALUE? -1:result;
 
     }

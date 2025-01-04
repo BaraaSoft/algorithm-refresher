@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -72,5 +73,33 @@ public class UsersControllerTest {
         assertEquals(userDetailsRequestModel.getFirstName(),userResponse.getFirstName());
         assertEquals(userDetailsRequestModel.getEmail(),userResponse.getEmail(),"The return email is incorrect");
         assertFalse(userResponse.getUserId().isEmpty(),"userId should not be empty");
+    }
+
+    @Test
+    @DisplayName("User request object must contain name field")
+    void testCreateUser_whenNameFieldIsEmpty_shouldReturnBadRequest() throws Exception {
+        // Arrange
+        UserDetailsRequestModel userDetailsRequestModel = new UserDetailsRequestModel();
+        userDetailsRequestModel.setLastName("Mirghani");
+        userDetailsRequestModel.setEmail("example@me.com");
+        userDetailsRequestModel.setPassword("usser@1233445555");
+        userDetailsRequestModel.setPassword("usser@1233445555");
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(userDetailsRequestModel));
+
+        UserDto userDto = new ModelMapper().map(userDetailsRequestModel, UserDto.class);
+        userDto.setUserId(UUID.randomUUID().toString());
+
+        when(usersService.createUser(any(UserDto.class))).thenReturn(userDto);
+
+        // act
+       MvcResult mvcResult = mockMvc.perform(requestBuilder).andReturn();
+
+       assertEquals(HttpStatus.BAD_REQUEST.value(),mvcResult.getResponse().getStatus(),"Expected BAD_REQUEST");
+
+
     }
 }

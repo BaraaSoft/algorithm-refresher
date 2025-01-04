@@ -1,11 +1,13 @@
 package com.appsdeveloperblog.tutorials.junit.ui.request;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserDetailsRequestModel {
 
     @Size(min=2, message="First name must not be less than 2 characters")
+    @NotNull
     private String firstName;
 
     @Size(min=2, message="Last name must not be less than 2 characters")
