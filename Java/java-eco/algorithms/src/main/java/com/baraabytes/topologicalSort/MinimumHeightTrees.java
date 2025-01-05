@@ -46,16 +46,11 @@ public class MinimumHeightTrees {
     enum Colors{
         WHITE,
         GREY,
-        BLACK
     }
-
-    Boolean hasCycle = false;
 
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         final Map<Integer,List<Integer>> graph = new HashMap<>();
         final Map<Integer,Colors> colorsMap = new HashMap<>();
-        List<Integer>[] result = new List[n];
-
 
         for(var edge: edges){
             graph.computeIfAbsent(edge[0],k->new ArrayList<>()).add(edge[1]);
@@ -64,14 +59,13 @@ public class MinimumHeightTrees {
             colorsMap.putIfAbsent(edge[1],Colors.WHITE);
         }
 
-        this.dfs(graph,colorsMap,result,0,n-1);
 
         List<MTree> smallestTree = new ArrayList<>();
         int smallestTreeSize = Integer.MAX_VALUE;
 
         for(int i=0;i<n;i++){
             IntStream.range(0,n).forEach(num->colorsMap.put(num,Colors.WHITE));
-            result = new List[n];
+            List<Integer>[] result = new List[n];
             this.dfs(graph,colorsMap,result,0,i);
             var fileredResult = filter(result);
             if(fileredResult.size() <= smallestTreeSize){
@@ -106,13 +100,11 @@ public class MinimumHeightTrees {
         for(var neighbour:graph.getOrDefault(node,new ArrayList<>())){
 
             if(colorsMap.get(neighbour)==Colors.WHITE) this.dfs(graph,colorsMap,result,level+1,neighbour);
-            else if (colorsMap.get(neighbour) == Colors.GREY) { this.hasCycle = true;}
         }
 
         if(result[level] == null) result[level] = new ArrayList<Integer>();
         result[level].add(node);
 
-        colorsMap.put(node,Colors.BLACK);
     }
 
 }
