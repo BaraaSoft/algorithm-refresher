@@ -1,11 +1,6 @@
 package com.baraabytes.twoPointers;
-
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MinimumNumberOfMovePalindrome {
 
