@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.test.context.TestPropertySource;
 
@@ -74,6 +75,22 @@ public class UserControllerIntegrationTest {
         assertEquals(userDetailsRequestJson.get("firstName"),createdUserDetails.getFirstName());
         assertFalse(createdUserDetails.getUserId().isEmpty());
 
+    }
+
+    @Test
+    @DisplayName("GET /users requires JWT")
+    void testGetUsers_whenMissingJWT_returns403(){
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity requestEntity = new HttpEntity(null,headers);
+
+       ResponseEntity<List<UserRest>> responseEntity = testRestTemplate.exchange("/users", HttpMethod.GET, requestEntity,
+                new ParameterizedTypeReference<List<UserRest>>() {
+                });
+
+       assertEquals(HttpStatus.FORBIDDEN,responseEntity.getStatusCode());
     }
 
 }
