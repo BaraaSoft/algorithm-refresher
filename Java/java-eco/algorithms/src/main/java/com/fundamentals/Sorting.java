@@ -1,12 +1,10 @@
-package com.fundamentals.sorting;
+package com.fundamentals;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class Main {
+public class Sorting {
     public static void main(String[] args) {
         Employee e1 = new Employee("John", "123");
         Employee e2 = new Employee("Jane", "456");
