@@ -9,11 +9,12 @@ import java.util.stream.Stream;
 public class Matrix {
 
     public static void main(String[] args){
-        List<List<Integer>> matrix = Stream.generate(ArrayList<Integer>::new)
+        List<List<Integer>> matrix = Stream
+                .generate(()-> new ArrayList<>( Collections.nCopies(5,0) ))
                 .limit(5)
                 .collect(Collectors.toList());
 
-        List<List<Integer>> matrix2 = Collections.nCopies(5,new ArrayList<Integer>());
+        List<List<Integer>> matrix2 = Collections.nCopies(5,new ArrayList<>());
 
         System.out.println(matrix);
     }
