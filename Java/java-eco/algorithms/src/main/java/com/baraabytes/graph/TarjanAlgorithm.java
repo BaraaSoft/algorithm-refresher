@@ -2,6 +2,8 @@ package com.baraabytes.graph;
 
 import java.util.*;
 
+//https://www.youtube.com/watch?v=ZeDNSeilf-Y&ab_channel=Techdose
+
 public class TarjanAlgorithm {
 
 
@@ -34,13 +36,21 @@ public class TarjanAlgorithm {
         Set<Integer> existInStack = new HashSet<>();
 
         for(int i=0;i<len;i++){
-            if(discovery.get(i) == -1) this.dfs(discovery,lowLink,stack,existInStack,time);
+            if(discovery.get(i) == -1) this.dfs(i,graph,discovery,lowLink,stack,existInStack,time);
             time++;
         }
 
     }
 
-    private void dfs(List<Integer> discovery,List<Integer> lowLink,List<Integer> stack , Set<Integer> existInStack,int time){
+    private void dfs(int node,List<List<Integer>> graph,List<Integer> discovery,List<Integer> lowLink,List<Integer> stack,
+                     Set<Integer> existInStack,int time){
+        existInStack.add(node);
+        for(int neighbour: graph.get(node)){
 
+            if(existInStack.contains(neighbour)){
+
+            }
+
+        }
     }
 }
