@@ -7,7 +7,7 @@ public class NumberofProvinces {
 
 
     public int findCircleNum(int[][] isConnected) {
-
+        return 0;
     }
 }
 
