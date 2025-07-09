@@ -1,4 +1,4 @@
-package com.baraabytes.graph.unionfind;
+package com.baraabytes.graph.unionfind.ref;
 import java.util.Map;
 import java.util.HashMap;
 
