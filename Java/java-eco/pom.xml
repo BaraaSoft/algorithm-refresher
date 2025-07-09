@@ -13,7 +13,15 @@
         <module>design-pattern</module>
         <module>lambdas</module>
         <module>algorithms</module>
+        <module>mobile-app-ws</module>
     </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>mobile-app-ws</id>
+            <name>mobile-app-ws</name>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
