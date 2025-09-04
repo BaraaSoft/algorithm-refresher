@@ -21,31 +21,30 @@ class Solution {
         }
 
         let hasCycle = false;
-        let visited = new Set();
+        let seen = new Set();
 
-        const traverse = (node, graph, seen = new Set(), visited, prev) => {
+        const traverse = (node, graph, seen, prev) => {
             if (node === undefined) return;
             if (seen.has(node)) {
                 hasCycle = true
                 return;
             }
-            visited.add(node)
             seen.add(node)
 
             for (let neighbor of graph[node]) {
 
                 if (neighbor !== prev)
-                    traverse(neighbor, graph, seen, visited, node)
+                    traverse(neighbor, graph, seen, node)
             }
-            seen.delete(node)
+         
 
             return;
         }
 
 
-        traverse(n - 1, graph, new Set(), visited)
+        traverse(n - 1, graph, seen)
 
-        return visited.size == n && !hasCycle
+        return seen.size == n && !hasCycle
 
     }
 
