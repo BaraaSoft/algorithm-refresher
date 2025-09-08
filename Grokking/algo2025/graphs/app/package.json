@@ -1,0 +1,11 @@
+{
+  "name": "app",
+  "packageManager": "yarn@4.9.3",
+  "scripts": {
+    "start": "node src/shortest-path/index.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "datastructures-js": "^13.0.0"
+  }
+}

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "directories": {
+    
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "yarn tsc --watch --preserveWatchOutput",
@@ -20,6 +23,12 @@
   "homepage": "https://github.com/BaraaSoft/algorithm-refresher#readme",
   "dependencies": {
     "collections": "^5.1.13",
+    "datastructures-js": "^13.0.0",
     "typescript": "^5.0.3"
+  },
+  "workspaces": {
+    "packages": [
+      "Grokking/algo2025/*"
+    ]
   }
 }
